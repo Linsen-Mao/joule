@@ -1,43 +1,49 @@
 package com.ls.mao.joule.service;
 
+import com.ls.mao.joule.model.ApiResponse;
 import com.ls.mao.joule.model.Assistant;
-import com.ls.mao.joule.repo.AssistantRepository;
-import org.springframework.stereotype.Service;
+import com.ls.mao.joule.model.QuestionRequest;
+import org.springframework.http.ResponseEntity;
 
-@Service
-public class AssistantService {
+/**
+ * Interface defining assistant-related operations.
+ */
+public interface AssistantService {
 
-    private final AssistantRepository assistantRepository;
+    /**
+     * Registers a new assistant with a default response.
+     *
+     * @param name     the name of the assistant
+     * @param response the default response for the assistant
+     * @return a success message
+     */
+    String registerAssistant(String name, String response);
 
-    public AssistantService(AssistantRepository assistantRepository) {
-        this.assistantRepository = assistantRepository;
-    }
+    /**
+     * Retrieves the default response of the assistant with the given name.
+     *
+     * @param name the name of the assistant
+     * @return the assistant's default response, or null if not found
+     */
+    String getResponse(String name);
 
+    /**
+     * Adds a question-answer pair to the specified assistant.
+     *
+     * @param name     the name of the assistant
+     * @param question the question to add
+     * @param answer   the answer to the question
+     * @return a success message if added successfully, or an error if assistant not found
+     */
+    String addQuestionAnswer(String name, String question, String answer);
 
-    public String registerAssistant(String name, String response) {
-        Assistant assistant = new Assistant(name, response);
-        assistantRepository.save(assistant);
-        return "Assistant " + name + " registered successfully.";
-    }
+    /**
+     * Retrieves the answer for a specific question from the specified assistant.
+     *
+     * @param name     the name of the assistant
+     * @param question the question to retrieve an answer for
+     * @return the answer if found, or null if assistant or answer not found
+     */
+    String getAnswer(String name, String question);
 
-    public String getResponse(String name) {
-        Assistant assistant = assistantRepository.findByName(name);
-        return assistant != null ? assistant.getDefaultResponse() : null;
-    }
-
-    //TODO
-    public String addQuestionAnswer(String name, String question, String answer) {
-        Assistant assistant = assistantRepository.findByName(name);
-        if (assistant != null) {
-            assistant.addQuestionAnswer(question, answer);
-            return "Question-Answer pair added successfully.";
-        }
-        return "Assistant not found.";
-    }
-
-    //TODO
-    public String getAnswer(String name, String question) {
-        Assistant assistant = assistantRepository.findByName(name);
-        return assistant != null ? assistant.getAnswer(question) : null;
-    }
 }

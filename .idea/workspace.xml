@@ -4,30 +4,55 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="06733696-4eea-4d93-b4fa-c98d4dc550b3" name="Changes" comment="" />
+    <list default="true" id="06733696-4eea-4d93-b4fa-c98d4dc550b3" name="Changes" comment="implemented basic requirements and testing, spring ai todo">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/service/RetrievalService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/service/impl/AssistantServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/ls/mao/joule/service/AssistantServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/service/RetrievalService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/service/impl/AssistantServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/com/ls/mao/joule/service/AssistantServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/model/ApiResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/model/ApiResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/service/AssistantService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/service/AssistantService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/controller/AssistantController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/controller/AssistantController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/service/AssistantService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/service/AssistantService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/ls/mao/joule/controller/AssistantControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/ls/mao/joule/controller/AssistantControllerTest.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Linsen-Mao"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Linsen-Mao&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
-    "url": "https://github.com/Linsen-Mao/joule.git",
+    "url": "git@github.com:Linsen-Mao/joule.git",
     "accountId": "16e3f7b1-47bc-4e0d-826d-962c3b4dee73"
   }
 }]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2o9XdJwalDPG7D6uJ6m4XwWbdBY" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -37,9 +62,13 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "JUnit.AssistantControllerTest.executor": "Run",
+    "JUnit.AssistantServiceRAGTest.executor": "Run",
+    "JUnit.AssistantServiceRAGTest.testGetAnswerUsingRAG_SuccessfulResponse.executor": "Run",
+    "JUnit.AssistantServiceTest.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/linsen/GenAI/joule",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -48,7 +77,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.AssistantControllerTest">
+  <component name="RunManager" selected="JUnit.AssistantServiceTest">
     <configuration name="AssistantControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="joule" />
       <extension name="coverage">
@@ -64,6 +93,52 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="AssistantServiceRAGTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="joule" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ls.mao.joule.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ls.mao.joule.service" />
+      <option name="MAIN_CLASS_NAME" value="com.ls.mao.joule.service.AssistantServiceRAGTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AssistantServiceRAGTest.testGetAnswerUsingRAG_SuccessfulResponse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="joule" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ls.mao.joule.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ls.mao.joule.service" />
+      <option name="MAIN_CLASS_NAME" value="com.ls.mao.joule.service.AssistantServiceRAGTest" />
+      <option name="METHOD_NAME" value="testGetAnswerUsingRAG_SuccessfulResponse" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AssistantServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="joule" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ls.mao.joule.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ls.mao.joule.service" />
+      <option name="MAIN_CLASS_NAME" value="com.ls.mao.joule.service.AssistantServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="JouleApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="joule" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.ls.mao.joule.JouleApplication" />
@@ -73,7 +148,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AssistantServiceTest" />
         <item itemvalue="JUnit.AssistantControllerTest" />
+        <item itemvalue="JUnit.AssistantServiceRAGTest.testGetAnswerUsingRAG_SuccessfulResponse" />
+        <item itemvalue="JUnit.AssistantServiceRAGTest" />
       </list>
     </recent_temporary>
   </component>
@@ -94,7 +172,17 @@
       <option name="presentableId" value="Default" />
       <updated>1730282850935</updated>
       <workItem from="1730282852017" duration="356000" />
+      <workItem from="1730283234235" duration="3317000" />
     </task>
+    <task id="LOCAL-00001" summary="implemented basic requirements and testing, spring ai todo">
+      <option name="closed" value="true" />
+      <created>1730283306897</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1730283306897</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -110,5 +198,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="implemented basic requirements and testing, spring ai todo" />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented basic requirements and testing, spring ai todo" />
   </component>
 </project>
