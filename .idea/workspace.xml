@@ -6,18 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="06733696-4eea-4d93-b4fa-c98d4dc550b3" name="Changes" comment="implemented basic requirements and testing, spring ai todo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/controller/AssistantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/controller/AssistantController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/model/Assistant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/model/Assistant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/service/AssistantService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/service/AssistantService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/service/impl/AssistantServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/service/impl/AssistantServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/ls/mao/joule/controller/AssistantControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/ls/mao/joule/controller/AssistantControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/ls/mao/joule/service/AssistantServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/ls/mao/joule/service/AssistantServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/controller/AssistantController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/controller/AssistantController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/model/Assistant.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/model/Assistant.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/service/AssistantService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/service/AssistantService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/service/impl/AssistantServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/service/impl/AssistantServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/ls/mao/joule/controller/AssistantControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/ls/mao/joule/controller/AssistantControllerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/ls/mao/joule/service/AssistantServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/ls/mao/joule/service/AssistantServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,30 +51,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JUnit.AssistantControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AssistantServiceRAGTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AssistantServiceRAGTest.testGetAnswerUsingRAG_SuccessfulResponse.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AssistantServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.JouleApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/linsen/GenAI/joule&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.AssistantControllerTest.executor": "Run",
+    "JUnit.AssistantServiceRAGTest.executor": "Run",
+    "JUnit.AssistantServiceRAGTest.testGetAnswerUsingRAG_SuccessfulResponse.executor": "Run",
+    "JUnit.AssistantServiceTest.executor": "Run",
+    "JUnit.AssistantServiceTest.testGetAnswerUsingChatModel.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.JouleApplication.executor": "Run",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/linsen/GenAI/joule",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="JUnit.AssistantServiceTest">
+}]]></component>
+  <component name="RunManager" selected="Spring Boot.JouleApplication">
     <configuration name="AssistantControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="joule" />
       <extension name="coverage">
@@ -96,6 +86,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.ls.mao.joule.controller" />
       <option name="MAIN_CLASS_NAME" value="com.ls.mao.joule.controller.AssistantControllerTest" />
+      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -111,6 +102,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.ls.mao.joule.service" />
       <option name="MAIN_CLASS_NAME" value="com.ls.mao.joule.service.AssistantServiceRAGTest" />
+      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -142,6 +134,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.ls.mao.joule.service" />
       <option name="MAIN_CLASS_NAME" value="com.ls.mao.joule.service.AssistantServiceTest" />
+      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -164,12 +157,23 @@
       </method>
     </configuration>
     <configuration name="JouleApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <envs>
+        <env name="OPENAI_API_KEY" value="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" />
+      </envs>
       <module name="joule" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.ls.mao.joule.JouleApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="JUnit.AssistantControllerTest" />
+      <item itemvalue="JUnit.AssistantServiceRAGTest" />
+      <item itemvalue="JUnit.AssistantServiceRAGTest.testGetAnswerUsingRAG_SuccessfulResponse" />
+      <item itemvalue="JUnit.AssistantServiceTest" />
+      <item itemvalue="JUnit.AssistantServiceTest.testGetAnswerUsingChatModel" />
+      <item itemvalue="Spring Boot.JouleApplication" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.AssistantServiceTest" />
@@ -198,7 +202,7 @@
       <updated>1730282850935</updated>
       <workItem from="1730282852017" duration="356000" />
       <workItem from="1730283234235" duration="4147000" />
-      <workItem from="1730289794952" duration="582000" />
+      <workItem from="1730289794952" duration="1775000" />
     </task>
     <task id="LOCAL-00001" summary="implemented basic requirements and testing, spring ai todo">
       <option name="closed" value="true" />
