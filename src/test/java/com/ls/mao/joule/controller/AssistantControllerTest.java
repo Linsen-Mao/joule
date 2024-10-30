@@ -67,26 +67,6 @@ class AssistantControllerTest {
                 .andExpect(jsonPath("$.message").value("No response found for assistant: UnknownAssistant"));
     }
 
-    @Test
-    void testAddQuestionAnswer() throws Exception {
-        AddQnARequest request = new AddQnARequest("What is SAP?", "SAP is a global leader in enterprise software solutions.");
-        String jsonRequest = """
-                {
-                    "question": "What is SAP?",
-                    "answer": "SAP is a global leader in enterprise software solutions."
-                }
-                """;
-
-        when(assistantService.addQuestionAnswer("SAPAssistant", "What is SAP?", "SAP is a global leader in enterprise software solutions."))
-                .thenReturn("Question-Answer pair added successfully.");
-
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/assistant/SAPAssistant/addQnA")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(jsonRequest))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.status").value("success"))
-                .andExpect(jsonPath("$.message").value("Question-Answer pair added successfully."));
-    }
 
     @Test
     void testGetAnswer() throws Exception {

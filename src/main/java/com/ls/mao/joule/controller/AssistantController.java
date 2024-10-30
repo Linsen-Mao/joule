@@ -51,33 +51,15 @@ public class AssistantController {
         return ResponseEntity.ok(ApiResponse.success(response));
     }
 
-    /**
-     * Adds a question-answer pair for a specified assistant.
-     * Note: This method will be replaced by Spring AI in the future.
-     * @param name
-     * @param request
-     * @return
-     */
-    //TODO
-    @PostMapping("/{name}/addQnA")
-    public ResponseEntity<ApiResponse> addQuestionAnswer(
-            @PathVariable("name") String name,
-            @RequestBody AddQnARequest request) {
-
-        logger.info("Adding QnA for assistant: {}", name);
-        String result = assistantService.addQuestionAnswer(name, request.question(), request.answer());
-        return ResponseEntity.ok(ApiResponse.success(result));
-    }
 
     /**
      * Retrieves an answer for a question for a specified assistant.
-     * Note: This method will be replaced by Spring AI in the future.
      * @param name
      * @param request
      * @param fallback
      * @return
      */
-    //TODO
+    //TODO Add RAG
     @PostMapping("/{name}/answer")
     public ResponseEntity<ApiResponse> getAnswer(
             @PathVariable("name") String name,

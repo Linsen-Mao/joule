@@ -1,23 +1,20 @@
 package com.ls.mao.joule.service.impl;
 
-import com.ls.mao.joule.model.ApiResponse;
 import com.ls.mao.joule.model.Assistant;
-import com.ls.mao.joule.model.QuestionRequest;
 import com.ls.mao.joule.repo.AssistantRepository;
 import com.ls.mao.joule.service.AssistantService;
-import org.springframework.http.ResponseEntity;
+import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.stereotype.Service;
 
-/**
- * Implementation of IAssistantService providing assistant-related operations.
- */
 @Service
 public class AssistantServiceImpl implements AssistantService {
 
     private final AssistantRepository assistantRepository;
+    private final ChatModel chatModel;
 
-    public AssistantServiceImpl(AssistantRepository assistantRepository) {
+    public AssistantServiceImpl(AssistantRepository assistantRepository, ChatModel chatModel) {
         this.assistantRepository = assistantRepository;
+        this.chatModel = chatModel;
     }
 
     @Override
@@ -34,19 +31,14 @@ public class AssistantServiceImpl implements AssistantService {
     }
 
     @Override
-    public String addQuestionAnswer(String name, String question, String answer) {
-        Assistant assistant = assistantRepository.findByName(name);
-        if (assistant != null) {
-            assistant.addQuestionAnswer(question, answer);
-            assistantRepository.save(assistant);  // Save changes to the database
-            return "Question-Answer pair added successfully.";
-        }
-        return "Assistant not found.";
-    }
-
-    @Override
     public String getAnswer(String name, String question) {
+        // Check if the assistant exists
         Assistant assistant = assistantRepository.findByName(name);
-        return assistant != null ? assistant.getAnswer(question) : null;
+        if (assistant == null) {
+            return "Assistant not found.";
+        }
+
+        String aiGeneratedAnswer = chatModel.call(question);
+        return aiGeneratedAnswer != null ? aiGeneratedAnswer : "I'm sorry, I don't have an answer for that.";
     }
 }
