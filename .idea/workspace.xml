@@ -4,13 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="06733696-4eea-4d93-b4fa-c98d4dc550b3" name="Changes" comment="implemented basic requirements and testing, spring ai todo">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+    <list default="true" id="06733696-4eea-4d93-b4fa-c98d4dc550b3" name="Changes" comment="change port">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/controller/AssistantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/controller/AssistantController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/service/AssistantService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/service/AssistantService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/service/RetrievalService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/service/impl/AssistantServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/service/impl/AssistantServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/service/RetrievalService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/joule-0.0.1-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/joule-0.0.1-SNAPSHOT.jar.original" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,6 +216,7 @@
       <workItem from="1730283234235" duration="4147000" />
       <workItem from="1730289794952" duration="10527000" />
       <workItem from="1730358114385" duration="7184000" />
+      <workItem from="1730385197584" duration="1690000" />
     </task>
     <task id="LOCAL-00001" summary="implemented basic requirements and testing, spring ai todo">
       <option name="closed" value="true" />
