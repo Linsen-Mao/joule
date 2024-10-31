@@ -12,7 +12,6 @@ import org.testcontainers.utility.DockerImageName;
 public class TestcontainersConfiguration {
 
     private static final DockerImageName POSTGRES_IMAGE = DockerImageName.parse("postgres:16");
-    private static final DockerImageName REDIS_IMAGE = DockerImageName.parse("redis:latest");
 
     @Bean
     public PostgreSQLContainer<?> postgresContainer(Environment env) {
@@ -23,14 +22,5 @@ public class TestcontainersConfiguration {
         postgres.start();
         System.setProperty("DB_PORT", postgres.getMappedPort(5432).toString());
         return postgres;
-    }
-
-    @Bean
-    @DependsOn("postgresContainer")
-    public GenericContainer<?> redisContainer() {
-        GenericContainer<?> redis = new GenericContainer<>(REDIS_IMAGE).withExposedPorts(6379);
-        redis.start();
-        System.setProperty("REDIS_PORT", redis.getFirstMappedPort().toString());
-        return redis;
     }
 }

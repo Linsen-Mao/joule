@@ -5,20 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06733696-4eea-4d93-b4fa-c98d4dc550b3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/util/IngestionService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/config/ChatClientConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/config/ChatClientConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/controller/AssistantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/controller/AssistantController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/model/AddQnARequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/model/Assistant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/model/Assistant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/repo/AssistantRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/repo/AssistantRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/ls/mao/joule/controller/AssistantControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/ls/mao/joule/controller/AssistantControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/ls/mao/joule/config/TestcontainersConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/ls/mao/joule/config/TestcontainersConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/config/ChatClientConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/config/ChatClientConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/model/AddQnARequest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/ls/mao/joule/controller/AssistantControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/ls/mao/joule/controller/AssistantControllerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/model/Assistant.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/model/Assistant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/service/impl/AssistantServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/service/impl/AssistantServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/com/ls/mao/joule/service/AssistantServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/ls/mao/joule/service/AssistantServiceTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -97,7 +92,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.AssistantServiceTest">
+  <component name="RunManager" selected="Spring Boot.JouleApplication">
     <configuration name="AssistantControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="joule" />
       <extension name="coverage">
@@ -196,8 +191,8 @@
       <list>
         <item itemvalue="JUnit.AssistantServiceTest" />
         <item itemvalue="JUnit.AssistantControllerTest" />
-        <item itemvalue="JUnit.JouleApplicationTests" />
         <item itemvalue="Docker.compose.yaml: Compose Deployment" />
+        <item itemvalue="JUnit.JouleApplicationTests" />
         <item itemvalue="JUnit.AssistantServiceTest.testGetAnswer" />
       </list>
     </recent_temporary>
@@ -221,7 +216,7 @@
       <workItem from="1730282852017" duration="356000" />
       <workItem from="1730283234235" duration="4147000" />
       <workItem from="1730289794952" duration="10527000" />
-      <workItem from="1730358114385" duration="4049000" />
+      <workItem from="1730358114385" duration="7184000" />
     </task>
     <task id="LOCAL-00001" summary="implemented basic requirements and testing, spring ai todo">
       <option name="closed" value="true" />
