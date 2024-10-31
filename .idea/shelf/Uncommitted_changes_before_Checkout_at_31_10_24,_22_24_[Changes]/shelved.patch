@@ -1,0 +1,373 @@
+Index: src/main/resources/application.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>spring.application.name=joule\nspring.ai.openai.api-key=${OPENAI_API_KEY}\nspring.ai.openai.chat.options.model=gpt-4o-mini\nspring.ai.vectorstore.pgvector.initialize-schema=true\nspring.ai.vectorstore.pgvector.reingest-on-start=true\n\nspring.datasource.url=jdbc:postgresql://localhost:5432/sap\nspring.datasource.username=admin\nspring.datasource.password=pd\nspring.jpa.hibernate.ddl-auto=update\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/src/main/resources/application.properties b/src/main/resources/application.properties
+--- a/src/main/resources/application.properties	(revision d8fdc6f9190f3610aef0944053f3258d6cb863b5)
++++ b/src/main/resources/application.properties	(date 1730381323939)
+@@ -1,10 +1,10 @@
+ spring.application.name=joule
+-spring.ai.openai.api-key=${OPENAI_API_KEY}
++spring.ai.openai.api-key=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
+ spring.ai.openai.chat.options.model=gpt-4o-mini
+ spring.ai.vectorstore.pgvector.initialize-schema=true
+ spring.ai.vectorstore.pgvector.reingest-on-start=true
+ 
+-spring.datasource.url=jdbc:postgresql://localhost:5432/sap
++spring.datasource.url=jdbc:postgresql://localhost:5433/sap
+ spring.datasource.username=admin
+ spring.datasource.password=pd
+ spring.jpa.hibernate.ddl-auto=update
+Index: target/classes/application.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>spring.application.name=joule\nspring.ai.openai.api-key=${OPENAI_API_KEY}\nspring.ai.openai.chat.options.model=gpt-4o-mini\nspring.ai.vectorstore.pgvector.initialize-schema=true\nspring.ai.vectorstore.pgvector.reingest-on-start=true\n\nspring.datasource.url=jdbc:postgresql://localhost:5432/sap\nspring.datasource.username=admin\nspring.datasource.password=pd\nspring.jpa.hibernate.ddl-auto=update\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/target/classes/application.properties b/target/classes/application.properties
+--- a/target/classes/application.properties	(revision d8fdc6f9190f3610aef0944053f3258d6cb863b5)
++++ b/target/classes/application.properties	(date 1730382068954)
+@@ -1,10 +1,10 @@
+ spring.application.name=joule
+-spring.ai.openai.api-key=${OPENAI_API_KEY}
++spring.ai.openai.api-key=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
+ spring.ai.openai.chat.options.model=gpt-4o-mini
+ spring.ai.vectorstore.pgvector.initialize-schema=true
+ spring.ai.vectorstore.pgvector.reingest-on-start=true
+ 
+-spring.datasource.url=jdbc:postgresql://localhost:5432/sap
++spring.datasource.url=jdbc:postgresql://localhost:5433/sap
+ spring.datasource.username=admin
+ spring.datasource.password=pd
+ spring.jpa.hibernate.ddl-auto=update
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"06733696-4eea-4d93-b4fa-c98d4dc550b3\" name=\"Changes\" comment=\"\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/compose.yaml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/compose.yaml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/ls/mao/joule/model/Assistant.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/ls/mao/joule/model/Assistant.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/ls/mao/joule/repo/AssistantRepository.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/ls/mao/joule/repo/AssistantRepository.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/application.properties\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/application.properties\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/test/java/com/ls/mao/joule/config/TestcontainersConfiguration.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/test/java/com/ls/mao/joule/config/TestcontainersConfiguration.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/target/classes/application.properties\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/application.properties\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/target/classes/com/ls/mao/joule/model/Assistant.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/com/ls/mao/joule/model/Assistant.class\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/target/classes/com/ls/mao/joule/service/impl/AssistantServiceImpl.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/com/ls/mao/joule/service/impl/AssistantServiceImpl.class\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/target/test-classes/com/ls/mao/joule/service/AssistantServiceTest.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/test-classes/com/ls/mao/joule/service/AssistantServiceTest.class\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Class\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;Linsen-Mao&quot;\n  }\n}</component>\n  <component name=\"GithubPullRequestsUISettings\">{\n  &quot;selectedUrlAndAccountId&quot;: {\n    &quot;url&quot;: &quot;git@github.com:Linsen-Mao/joule.git&quot;,\n    &quot;accountId&quot;: &quot;16e3f7b1-47bc-4e0d-826d-962c3b4dee73&quot;\n  }\n}</component>\n  <component name=\"KubernetesApiPersistence\">{}</component>\n  <component name=\"KubernetesApiProvider\">{\n  &quot;isMigrated&quot;: true\n}</component>\n  <component name=\"ProblemsViewState\">\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 4\n}</component>\n  <component name=\"ProjectId\" id=\"2o9XdJwalDPG7D6uJ6m4XwWbdBY\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"Docker.compose.yaml: Compose Deployment.executor\": \"Run\",\n    \"JUnit.AssistantControllerTest.executor\": \"Run\",\n    \"JUnit.AssistantServiceRAGTest.executor\": \"Run\",\n    \"JUnit.AssistantServiceRAGTest.testGetAnswerUsingRAG_SuccessfulResponse.executor\": \"Run\",\n    \"JUnit.AssistantServiceTest.executor\": \"Run\",\n    \"JUnit.AssistantServiceTest.testGetAnswer.executor\": \"Run\",\n    \"JUnit.AssistantServiceTest.testGetAnswerUsingChatModel.executor\": \"Run\",\n    \"JUnit.JouleApplicationTests.executor\": \"Run\",\n    \"RequestMappingsPanelOrder0\": \"0\",\n    \"RequestMappingsPanelOrder1\": \"1\",\n    \"RequestMappingsPanelWidth0\": \"75\",\n    \"RequestMappingsPanelWidth1\": \"75\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\n    \"Spring Boot.JouleApplication.executor\": \"Run\",\n    \"git-widget-placeholder\": \"main\",\n    \"kotlin-language-version-configured\": \"true\",\n    \"last_opened_file_path\": \"/Users/linsen/GenAI/joule\",\n    \"node.js.detected.package.eslint\": \"true\",\n    \"node.js.detected.package.tslint\": \"true\",\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\n    \"nodejs_package_manager_path\": \"npm\",\n    \"vue.rearranger.settings.migration\": \"true\"\n  },\n  \"keyToStringList\": {\n    \"DatabaseDriversLRU\": [\n      \"postgresql\"\n    ]\n  }\n}]]></component>\n  <component name=\"RunManager\" selected=\"Spring Boot.JouleApplication\">\n    <configuration name=\"AssistantControllerTest\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"joule\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"com.ls.mao.joule.controller.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <option name=\"PACKAGE_NAME\" value=\"com.ls.mao.joule.controller\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.ls.mao.joule.controller.AssistantControllerTest\" />\n      <option name=\"TEST_OBJECT\" value=\"class\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"AssistantServiceTest\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"joule\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"com.ls.mao.joule.service.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <option name=\"PACKAGE_NAME\" value=\"com.ls.mao.joule.service\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.ls.mao.joule.service.AssistantServiceTest\" />\n      <option name=\"METHOD_NAME\" value=\"\" />\n      <option name=\"TEST_OBJECT\" value=\"class\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"AssistantServiceTest.testGetAnswer\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"joule\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"com.ls.mao.joule.service.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <option name=\"PACKAGE_NAME\" value=\"com.ls.mao.joule.service\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.ls.mao.joule.service.AssistantServiceTest\" />\n      <option name=\"METHOD_NAME\" value=\"testGetAnswer\" />\n      <option name=\"TEST_OBJECT\" value=\"method\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"JouleApplicationTests\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"joule\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"com.ls.mao.joule.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <option name=\"PACKAGE_NAME\" value=\"com.ls.mao.joule\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.ls.mao.joule.JouleApplicationTests\" />\n      <option name=\"TEST_OBJECT\" value=\"class\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"JouleApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\n      <envs>\n        <env name=\"OPENAI_API_KEY\" value=\"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\" />\n      </envs>\n      <module name=\"joule\" />\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.ls.mao.joule.JouleApplication\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration default=\"true\" type=\"docker-deploy\" factoryName=\"docker-compose.yml\" temporary=\"true\">\n      <deployment type=\"docker-compose.yml\">\n        <settings />\n      </deployment>\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"compose.yaml: Compose Deployment\" type=\"docker-deploy\" factoryName=\"docker-compose.yml\" temporary=\"true\" server-name=\"Docker\">\n      <deployment type=\"docker-compose.yml\">\n        <settings>\n          <option name=\"sourceFilePath\" value=\"compose.yaml\" />\n        </settings>\n      </deployment>\n      <method v=\"2\" />\n    </configuration>\n    <list>\n      <item itemvalue=\"Docker.compose.yaml: Compose Deployment\" />\n      <item itemvalue=\"JUnit.JouleApplicationTests\" />\n      <item itemvalue=\"JUnit.AssistantServiceTest.testGetAnswer\" />\n      <item itemvalue=\"JUnit.AssistantControllerTest\" />\n      <item itemvalue=\"JUnit.AssistantServiceTest\" />\n      <item itemvalue=\"Spring Boot.JouleApplication\" />\n    </list>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"JUnit.AssistantServiceTest\" />\n        <item itemvalue=\"JUnit.AssistantControllerTest\" />\n        <item itemvalue=\"Docker.compose.yaml: Compose Deployment\" />\n        <item itemvalue=\"JUnit.JouleApplicationTests\" />\n        <item itemvalue=\"JUnit.AssistantServiceTest.testGetAnswer\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SharedIndexes\">\n    <attachedChunks>\n      <set>\n        <option value=\"bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23726.103\" />\n        <option value=\"bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23726.103\" />\n      </set>\n    </attachedChunks>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"06733696-4eea-4d93-b4fa-c98d4dc550b3\" name=\"Changes\" comment=\"\" />\n      <created>1730282850935</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1730282850935</updated>\n      <workItem from=\"1730282852017\" duration=\"356000\" />\n      <workItem from=\"1730283234235\" duration=\"4147000\" />\n      <workItem from=\"1730289794952\" duration=\"10527000\" />\n      <workItem from=\"1730358114385\" duration=\"7184000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"implemented basic requirements and testing, spring ai todo\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1730283306897</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1730283306897</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"2\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"implemented basic requirements and testing, spring ai todo\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"implemented basic requirements and testing, spring ai todo\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision d8fdc6f9190f3610aef0944053f3258d6cb863b5)
++++ b/.idea/workspace.xml	(date 1730384612178)
+@@ -5,16 +5,14 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="06733696-4eea-4d93-b4fa-c98d4dc550b3" name="Changes" comment="">
++      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/compose.yaml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/model/Assistant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/model/Assistant.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/repo/AssistantRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/repo/AssistantRepository.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/test/java/com/ls/mao/joule/config/TestcontainersConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/ls/mao/joule/config/TestcontainersConfiguration.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/model/Assistant.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/model/Assistant.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/service/impl/AssistantServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/service/impl/AssistantServiceImpl.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/ls/mao/joule/service/AssistantServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/ls/mao/joule/service/AssistantServiceTest.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/repo/AssistantRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/repo/AssistantRepository.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/test-classes/com/ls/mao/joule/config/TestcontainersConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/ls/mao/joule/config/TestcontainersConfiguration.class" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -25,11 +23,18 @@
+     <option name="RECENT_TEMPLATES">
+       <list>
+         <option value="Class" />
++        <option value="Dockerfile" />
+       </list>
+     </option>
+   </component>
+   <component name="Git.Settings">
++    <option name="RECENT_BRANCH_BY_REPOSITORY">
++      <map>
++        <entry key="$PROJECT_DIR$" value="main" />
++      </map>
++    </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++    <option name="RESET_MODE" value="HARD" />
+   </component>
+   <component name="GitHubPullRequestSearchHistory">{
+   &quot;lastFilter&quot;: {
+@@ -61,6 +66,7 @@
+   </component>
+   <component name="PropertiesComponent"><![CDATA[{
+   "keyToString": {
++    "Docker.Dockerfile.executor": "Run",
+     "Docker.compose.yaml: Compose Deployment.executor": "Run",
+     "JUnit.AssistantControllerTest.executor": "Run",
+     "JUnit.AssistantServiceRAGTest.executor": "Run",
+@@ -69,6 +75,7 @@
+     "JUnit.AssistantServiceTest.testGetAnswer.executor": "Run",
+     "JUnit.AssistantServiceTest.testGetAnswerUsingChatModel.executor": "Run",
+     "JUnit.JouleApplicationTests.executor": "Run",
++    "Maven.joule [verify].executor": "Run",
+     "RequestMappingsPanelOrder0": "0",
+     "RequestMappingsPanelOrder1": "1",
+     "RequestMappingsPanelWidth0": "75",
+@@ -76,7 +83,7 @@
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+     "Spring Boot.JouleApplication.executor": "Run",
+-    "git-widget-placeholder": "main",
++    "git-widget-placeholder": "in-memory",
+     "kotlin-language-version-configured": "true",
+     "last_opened_file_path": "/Users/linsen/GenAI/joule",
+     "node.js.detected.package.eslint": "true",
+@@ -92,7 +99,7 @@
+     ]
+   }
+ }]]></component>
+-  <component name="RunManager" selected="Spring Boot.JouleApplication">
++  <component name="RunManager" selected="Docker.Dockerfile">
+     <configuration name="AssistantControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+       <module name="joule" />
+       <extension name="coverage">
+@@ -124,46 +131,76 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="AssistantServiceTest.testGetAnswer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+-      <module name="joule" />
+-      <extension name="coverage">
+-        <pattern>
+-          <option name="PATTERN" value="com.ls.mao.joule.service.*" />
+-          <option name="ENABLED" value="true" />
+-        </pattern>
+-      </extension>
+-      <option name="PACKAGE_NAME" value="com.ls.mao.joule.service" />
+-      <option name="MAIN_CLASS_NAME" value="com.ls.mao.joule.service.AssistantServiceTest" />
+-      <option name="METHOD_NAME" value="testGetAnswer" />
+-      <option name="TEST_OBJECT" value="method" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
++    <configuration name="joule [verify]" type="MavenRunConfiguration" factoryName="Maven">
++      <MavenSettings>
++        <option name="myGeneralSettings" />
++        <option name="myRunnerSettings">
++          <MavenRunnerSettings>
++            <option name="delegateBuildToMaven" value="false" />
++            <option name="environmentProperties">
++              <map>
++                <entry key="OPENAI_API_KEY" value="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" />
++              </map>
++            </option>
++            <option name="jreName" value="#USE_PROJECT_JDK" />
++            <option name="mavenProperties">
++              <map />
++            </option>
++            <option name="passParentEnv" value="true" />
++            <option name="runMavenInBackground" value="true" />
++            <option name="skipTests" value="false" />
++            <option name="vmOptions" value="" />
++          </MavenRunnerSettings>
++        </option>
++        <option name="myRunnerParameters">
++          <MavenRunnerParameters>
++            <option name="cmdOptions" />
++            <option name="profiles">
++              <set />
++            </option>
++            <option name="goals">
++              <list>
++                <option value="verify" />
++              </list>
++            </option>
++            <option name="multimoduleDir" />
++            <option name="pomFileName" value="pom.xml" />
++            <option name="profilesMap">
++              <map />
++            </option>
++            <option name="projectsCmdOptionValues">
++              <list />
++            </option>
++            <option name="resolveToWorkspace" value="false" />
++            <option name="workingDirPath" value="$PROJECT_DIR$" />
++          </MavenRunnerParameters>
++        </option>
++      </MavenSettings>
++      <method v="2" />
+     </configuration>
+-    <configuration name="JouleApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++    <configuration name="JouleApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
++      <envs>
++        <env name="OPENAI_API_KEY" value="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" />
++      </envs>
+       <module name="joule" />
++      <option name="SPRING_BOOT_MAIN_CLASS" value="com.ls.mao.joule.JouleApplication" />
+       <extension name="coverage">
+         <pattern>
+           <option name="PATTERN" value="com.ls.mao.joule.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+-      <option name="PACKAGE_NAME" value="com.ls.mao.joule" />
+-      <option name="MAIN_CLASS_NAME" value="com.ls.mao.joule.JouleApplicationTests" />
+-      <option name="TEST_OBJECT" value="class" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="JouleApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+-      <envs>
+-        <env name="OPENAI_API_KEY" value="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" />
+-      </envs>
+-      <module name="joule" />
+-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.ls.mao.joule.JouleApplication" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
++    <configuration name="Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
++      <deployment type="dockerfile">
++        <settings>
++          <option name="sourceFilePath" value="Dockerfile" />
++        </settings>
++      </deployment>
++      <method v="2" />
+     </configuration>
+     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+       <deployment type="docker-compose.yml">
+@@ -171,6 +208,10 @@
+       </deployment>
+       <method v="2" />
+     </configuration>
++    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
++      <deployment type="dockerfile" />
++      <method v="2" />
++    </configuration>
+     <configuration name="compose.yaml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+       <deployment type="docker-compose.yml">
+         <settings>
+@@ -180,20 +221,20 @@
+       <method v="2" />
+     </configuration>
+     <list>
++      <item itemvalue="Docker.Dockerfile" />
+       <item itemvalue="Docker.compose.yaml: Compose Deployment" />
+-      <item itemvalue="JUnit.JouleApplicationTests" />
+-      <item itemvalue="JUnit.AssistantServiceTest.testGetAnswer" />
+       <item itemvalue="JUnit.AssistantControllerTest" />
+       <item itemvalue="JUnit.AssistantServiceTest" />
++      <item itemvalue="Maven.joule [verify]" />
+       <item itemvalue="Spring Boot.JouleApplication" />
+     </list>
+     <recent_temporary>
+       <list>
++        <item itemvalue="Docker.Dockerfile" />
++        <item itemvalue="Docker.compose.yaml: Compose Deployment" />
++        <item itemvalue="Spring Boot.JouleApplication" />
+         <item itemvalue="JUnit.AssistantServiceTest" />
+         <item itemvalue="JUnit.AssistantControllerTest" />
+-        <item itemvalue="Docker.compose.yaml: Compose Deployment" />
+-        <item itemvalue="JUnit.JouleApplicationTests" />
+-        <item itemvalue="JUnit.AssistantServiceTest.testGetAnswer" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -217,6 +258,7 @@
+       <workItem from="1730283234235" duration="4147000" />
+       <workItem from="1730289794952" duration="10527000" />
+       <workItem from="1730358114385" duration="7184000" />
++      <workItem from="1730380548131" duration="2955000" />
+     </task>
+     <task id="LOCAL-00001" summary="implemented basic requirements and testing, spring ai todo">
+       <option name="closed" value="true" />
+Index: compose.yaml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>services:\n  pgvector:\n    image: 'pgvector/pgvector:pg16'\n    environment:\n      - 'POSTGRES_DB=sap'\n      - 'POSTGRES_PASSWORD=pd'\n      - 'POSTGRES_USER=admin'\n    labels:\n      - \"org.springframework.boot.service-connection=postgres\"\n    ports:\n      - '5432:5432'\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/compose.yaml b/compose.yaml
+--- a/compose.yaml	(revision d8fdc6f9190f3610aef0944053f3258d6cb863b5)
++++ b/compose.yaml	(date 1730382468343)
+@@ -1,4 +1,14 @@
+ services:
++  app:
++    image: 'joule'
++    build:
++      context: .
++    container_name: app
++    depends_on:
++      - pgvector
++    ports:
++      - '8080:8080'
++
+   pgvector:
+     image: 'pgvector/pgvector:pg16'
+     environment:
+@@ -8,4 +18,4 @@
+     labels:
+       - "org.springframework.boot.service-connection=postgres"
+     ports:
+-      - '5432:5432'
++      - '5433:5432'
+Index: .idea/dataSources.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"DataSourceManagerImpl\" format=\"xml\" multifile-model=\"true\">\n    <data-source source=\"LOCAL\" name=\"sap@localhost\" uuid=\"c07bd885-0c06-4eb9-9911-a659ecdd21fd\">\n      <driver-ref>postgresql</driver-ref>\n      <synchronize>true</synchronize>\n      <jdbc-driver>org.postgresql.Driver</jdbc-driver>\n      <jdbc-url>jdbc:postgresql://localhost:5432/sap</jdbc-url>\n      <jdbc-additional-properties>\n        <property name=\"com.intellij.clouds.kubernetes.db.host.port\" />\n        <property name=\"com.intellij.clouds.kubernetes.db.enabled\" value=\"false\" />\n        <property name=\"com.intellij.clouds.kubernetes.db.container.port\" />\n      </jdbc-additional-properties>\n      <working-dir>$ProjectFileDir$</working-dir>\n    </data-source>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dataSources.xml b/.idea/dataSources.xml
+--- a/.idea/dataSources.xml	(revision d8fdc6f9190f3610aef0944053f3258d6cb863b5)
++++ b/.idea/dataSources.xml	(date 1730380647441)
+@@ -13,5 +13,18 @@
+       </jdbc-additional-properties>
+       <working-dir>$ProjectFileDir$</working-dir>
+     </data-source>
++    <data-source source="LOCAL" name="sap@localhost [2]" uuid="33190ff2-de57-41ba-9c68-f5e735c83784">
++      <driver-ref>postgresql</driver-ref>
++      <synchronize>true</synchronize>
++      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
++      <jdbc-url>jdbc:postgresql://localhost:5433/sap</jdbc-url>
++      <jdbc-additional-properties>
++        <property name="com.intellij.clouds.kubernetes.db.host.port" />
++        <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
++        <property name="com.intellij.clouds.kubernetes.db.resource.type" value="Deployment" />
++        <property name="com.intellij.clouds.kubernetes.db.container.port" />
++      </jdbc-additional-properties>
++      <working-dir>$ProjectFileDir$</working-dir>
++    </data-source>
+   </component>
+ </project>
+\ No newline at end of file
+Index: .idea/dataSources.local.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"dataSourceStorageLocal\" created-in=\"IU-242.23726.103\">\n    <data-source name=\"sap@localhost\" uuid=\"c07bd885-0c06-4eb9-9911-a659ecdd21fd\">\n      <database-info product=\"PostgreSQL\" version=\"16.3 (Debian 16.3-1.pgdg120+1)\" jdbc-version=\"4.2\" driver-name=\"PostgreSQL JDBC Driver\" driver-version=\"42.6.0\" dbms=\"POSTGRES\" exact-version=\"16.3\" exact-driver-version=\"42.6\">\n        <identifier-quote-string>&quot;</identifier-quote-string>\n      </database-info>\n      <case-sensitivity plain-identifiers=\"lower\" quoted-identifiers=\"exact\" />\n      <user-name>admin</user-name>\n      <schema-mapping>\n        <introspection-scope>\n          <node kind=\"database\" qname=\"@\">\n            <node kind=\"schema\" qname=\"@\" />\n          </node>\n        </introspection-scope>\n      </schema-mapping>\n    </data-source>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dataSources.local.xml b/.idea/dataSources.local.xml
+--- a/.idea/dataSources.local.xml	(revision d8fdc6f9190f3610aef0944053f3258d6cb863b5)
++++ b/.idea/dataSources.local.xml	(date 1730380647446)
+@@ -15,5 +15,20 @@
+         </introspection-scope>
+       </schema-mapping>
+     </data-source>
++    <data-source name="sap@localhost [2]" uuid="33190ff2-de57-41ba-9c68-f5e735c83784">
++      <database-info product="PostgreSQL" version="16.4 (Debian 16.4-1.pgdg120+2)" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.6.0" dbms="POSTGRES" exact-version="16.4" exact-driver-version="42.6">
++        <identifier-quote-string>&quot;</identifier-quote-string>
++      </database-info>
++      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
++      <secret-storage>master_key</secret-storage>
++      <user-name>admin</user-name>
++      <schema-mapping>
++        <introspection-scope>
++          <node kind="database" qname="@">
++            <node kind="schema" qname="@" />
++          </node>
++        </introspection-scope>
++      </schema-mapping>
++    </data-source>
+   </component>
+ </project>
+\ No newline at end of file
