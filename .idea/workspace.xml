@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="06733696-4eea-4d93-b4fa-c98d4dc550b3" name="Changes" comment="change port">
+    <list default="true" id="06733696-4eea-4d93-b4fa-c98d4dc550b3" name="Changes" comment="delete unnecessary class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/controller/AssistantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/controller/AssistantController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/service/AssistantService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/service/AssistantService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/service/RetrievalService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/service/impl/AssistantServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/service/impl/AssistantServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/service/RetrievalService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/joule-0.0.1-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/joule-0.0.1-SNAPSHOT.jar.original" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/ls/mao/joule/config/TestcontainersConfiguration.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,9 +183,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.compose.yaml: Compose Deployment" />
         <item itemvalue="JUnit.AssistantServiceTest" />
         <item itemvalue="JUnit.AssistantControllerTest" />
-        <item itemvalue="Docker.compose.yaml: Compose Deployment" />
         <item itemvalue="JUnit.JouleApplicationTests" />
         <item itemvalue="JUnit.AssistantServiceTest.testGetAnswer" />
       </list>
@@ -217,6 +212,7 @@
       <workItem from="1730289794952" duration="10527000" />
       <workItem from="1730358114385" duration="7184000" />
       <workItem from="1730385197584" duration="1690000" />
+      <workItem from="1730386898433" duration="399000" />
     </task>
     <task id="LOCAL-00001" summary="implemented basic requirements and testing, spring ai todo">
       <option name="closed" value="true" />
@@ -226,7 +222,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730283306897</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="delete unnecessary class">
+      <option name="closed" value="true" />
+      <created>1730387020112</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1730387020112</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -245,6 +249,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="implemented basic requirements and testing, spring ai todo" />
-    <option name="LAST_COMMIT_MESSAGE" value="implemented basic requirements and testing, spring ai todo" />
+    <MESSAGE value="delete unnecessary class" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete unnecessary class" />
   </component>
 </project>
