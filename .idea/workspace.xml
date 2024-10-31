@@ -4,11 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="06733696-4eea-4d93-b4fa-c98d4dc550b3" name="Changes" comment="implemented basic requirements and testing, spring ai todo">
+    <list default="true" id="06733696-4eea-4d93-b4fa-c98d4dc550b3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/util/IngestionService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/service/impl/AssistantServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/service/impl/AssistantServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/ls/mao/joule/service/AssistantServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/ls/mao/joule/service/AssistantServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/service/impl/AssistantServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/service/impl/AssistantServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/config/ChatClientConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/config/ChatClientConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/controller/AssistantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/controller/AssistantController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/model/AddQnARequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/ls/mao/joule/controller/AssistantControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/ls/mao/joule/controller/AssistantControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/config/ChatClientConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/config/ChatClientConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/model/AddQnARequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/ls/mao/joule/controller/AssistantControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/ls/mao/joule/controller/AssistantControllerTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/com/ls/mao/joule/service/AssistantServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/ls/mao/joule/service/AssistantServiceTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,17 +66,20 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Docker.compose.yaml: Compose Deployment.executor": "Run",
     "JUnit.AssistantControllerTest.executor": "Run",
     "JUnit.AssistantServiceRAGTest.executor": "Run",
     "JUnit.AssistantServiceRAGTest.testGetAnswerUsingRAG_SuccessfulResponse.executor": "Run",
     "JUnit.AssistantServiceTest.executor": "Run",
     "JUnit.AssistantServiceTest.testGetAnswer.executor": "Run",
     "JUnit.AssistantServiceTest.testGetAnswerUsingChatModel.executor": "Run",
+    "JUnit.JouleApplicationTests.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.JouleApplication.executor": "Run",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
@@ -77,6 +90,11 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
   }
 }]]></component>
   <component name="RunManager" selected="JUnit.AssistantServiceTest">
@@ -90,24 +108,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.ls.mao.joule.controller" />
       <option name="MAIN_CLASS_NAME" value="com.ls.mao.joule.controller.AssistantControllerTest" />
-      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AssistantServiceRAGTest.testGetAnswerUsingRAG_SuccessfulResponse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="joule" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.ls.mao.joule.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.ls.mao.joule.service" />
-      <option name="MAIN_CLASS_NAME" value="com.ls.mao.joule.service.AssistantServiceRAGTest" />
-      <option name="METHOD_NAME" value="testGetAnswerUsingRAG_SuccessfulResponse" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -144,18 +145,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AssistantServiceTest.testGetAnswerUsingChatModel" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="JouleApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="joule" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.ls.mao.joule.service.*" />
+          <option name="PATTERN" value="com.ls.mao.joule.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.ls.mao.joule.service" />
-      <option name="MAIN_CLASS_NAME" value="com.ls.mao.joule.service.AssistantServiceTest" />
-      <option name="METHOD_NAME" value="testGetAnswerUsingChatModel" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="com.ls.mao.joule" />
+      <option name="MAIN_CLASS_NAME" value="com.ls.mao.joule.JouleApplicationTests" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -170,21 +170,35 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="compose.yaml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <list>
+      <item itemvalue="Docker.compose.yaml: Compose Deployment" />
+      <item itemvalue="JUnit.JouleApplicationTests" />
       <item itemvalue="JUnit.AssistantServiceTest.testGetAnswer" />
       <item itemvalue="JUnit.AssistantControllerTest" />
-      <item itemvalue="JUnit.AssistantServiceRAGTest.testGetAnswerUsingRAG_SuccessfulResponse" />
       <item itemvalue="JUnit.AssistantServiceTest" />
-      <item itemvalue="JUnit.AssistantServiceTest.testGetAnswerUsingChatModel" />
       <item itemvalue="Spring Boot.JouleApplication" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.AssistantServiceTest" />
-        <item itemvalue="JUnit.AssistantServiceTest.testGetAnswer" />
-        <item itemvalue="JUnit.AssistantServiceTest.testGetAnswerUsingChatModel" />
         <item itemvalue="JUnit.AssistantControllerTest" />
-        <item itemvalue="JUnit.AssistantServiceRAGTest.testGetAnswerUsingRAG_SuccessfulResponse" />
+        <item itemvalue="JUnit.JouleApplicationTests" />
+        <item itemvalue="Docker.compose.yaml: Compose Deployment" />
+        <item itemvalue="JUnit.AssistantServiceTest.testGetAnswer" />
       </list>
     </recent_temporary>
   </component>
@@ -206,7 +220,8 @@
       <updated>1730282850935</updated>
       <workItem from="1730282852017" duration="356000" />
       <workItem from="1730283234235" duration="4147000" />
-      <workItem from="1730289794952" duration="7806000" />
+      <workItem from="1730289794952" duration="10527000" />
+      <workItem from="1730358114385" duration="4049000" />
     </task>
     <task id="LOCAL-00001" summary="implemented basic requirements and testing, spring ai todo">
       <option name="closed" value="true" />

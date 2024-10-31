@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -39,6 +40,12 @@ public class AssistantController {
      */
     @GetMapping("/{name}")
     public ResponseEntity<ApiResponse> getAssistantResponse(@PathVariable("name") String name) {
+        if (!StringUtils.hasText(name)) {
+            logger.warn("Assistant name is null or empty");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(ApiResponse.error("Assistant name must not be null or empty"));
+        }
+
         logger.info("Fetching response for assistant with name: {}", name);
         String response = assistantService.getResponse(name);
 
@@ -56,23 +63,19 @@ public class AssistantController {
      * Retrieves an answer for a question for a specified assistant.
      * @param name
      * @param request
-     * @param fallback
      * @return
      */
-    //TODO Add RAG
     @PostMapping("/{name}/answer")
     public ResponseEntity<ApiResponse> getAnswer(
             @PathVariable("name") String name,
-            @RequestBody QuestionRequest request,
-            @RequestParam(value = "fallback", required = false, defaultValue = "false") boolean fallback) {
+            @RequestBody QuestionRequest request) {
 
         String answer = assistantService.getAnswer(name, request.question());
 
-        if (answer == null && fallback) {
-            return ResponseEntity.ok(ApiResponse.success("Sorry, I don't have an answer for that."));
-        } else if (answer == null) {
+        if (answer == null || answer.isEmpty()) {
+            logger.warn("No answer found for assistant: {} and question: {}", name, request.question());
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(ApiResponse.error("No answer found for the question: " + request.question()));
+                    .body(ApiResponse.error("No answer found for the given question"));
         }
 
         return ResponseEntity.ok(ApiResponse.success(answer));

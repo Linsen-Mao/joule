@@ -1,6 +1,5 @@
 package com.ls.mao.joule.controller;
 
-import com.ls.mao.joule.model.AddQnARequest;
 import com.ls.mao.joule.model.QuestionRequest;
 import com.ls.mao.joule.model.RegisterAssistantRequest;
 import com.ls.mao.joule.service.AssistantService;
@@ -104,6 +103,6 @@ class AssistantControllerTest {
                         .content(jsonRequest))
                 .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.status").value("error"))
-                .andExpect(jsonPath("$.message").value("No answer found for the question: Explain SAP Business Technology Platform."));
+                .andExpect(jsonPath("$.message").value("No answer found for the given question"));
     }
 }
