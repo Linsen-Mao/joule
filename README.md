@@ -15,14 +15,7 @@ Joule is a digital assistant service that allows users to:
 
 ## Setup Instructions
 
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/Linsen-Mao/joule.git
-cd joule
-```
-
-### 2. Start the Database
+### 1. Start the Database
 
 Use the provided `compose.yaml` file to start the database using Docker Compose:
 
@@ -30,7 +23,7 @@ Use the provided `compose.yaml` file to start the database using Docker Compose:
 docker-compose -f compose.yaml up -d
 ```
 
-### 3. Configure the Application
+### 2. Configure the Application
 
 Create an environment variable for your OpenAI API Key:
 
@@ -47,7 +40,21 @@ Alternatively, you can add the API key to the application's `application.propert
 openai.api.key=your-openai-api-key
 ```
 
-### 4. Build and Run the Application
+If you want to use RAG, set the attribute to be true.
+
+```properties
+spring.ai.vectorstore.pgvector.activated=true
+```
+
+If it is the first time you upload the PDFs, set this attribute to be true to embed documents.
+
+```properties
+spring.ai.vectorstore.pgvector.reingest-on-start=true
+```
+
+Then upload the **PDF** files under the **resources/docs** folder
+
+### 3. Build and Run the Application
 
 The service will start on **`http://localhost:8080`**.
 
