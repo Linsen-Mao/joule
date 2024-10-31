@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="06733696-4eea-4d93-b4fa-c98d4dc550b3" name="Changes" comment="implemented basic requirements and testing, spring ai todo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/service/impl/AssistantServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/service/impl/AssistantServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/ls/mao/joule/service/AssistantServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/ls/mao/joule/service/AssistantServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/service/impl/AssistantServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/service/impl/AssistantServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/ls/mao/joule/service/AssistantServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/ls/mao/joule/service/AssistantServiceTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +60,7 @@
     "JUnit.AssistantServiceRAGTest.executor": "Run",
     "JUnit.AssistantServiceRAGTest.testGetAnswerUsingRAG_SuccessfulResponse.executor": "Run",
     "JUnit.AssistantServiceTest.executor": "Run",
+    "JUnit.AssistantServiceTest.testGetAnswer.executor": "Run",
     "JUnit.AssistantServiceTest.testGetAnswerUsingChatModel.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
@@ -75,7 +79,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Spring Boot.JouleApplication">
+  <component name="RunManager" selected="JUnit.AssistantServiceTest">
     <configuration name="AssistantControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="joule" />
       <extension name="coverage">
@@ -86,22 +90,6 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.ls.mao.joule.controller" />
       <option name="MAIN_CLASS_NAME" value="com.ls.mao.joule.controller.AssistantControllerTest" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AssistantServiceRAGTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="joule" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.ls.mao.joule.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.ls.mao.joule.service" />
-      <option name="MAIN_CLASS_NAME" value="com.ls.mao.joule.service.AssistantServiceRAGTest" />
       <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
@@ -140,6 +128,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="AssistantServiceTest.testGetAnswer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="joule" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ls.mao.joule.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ls.mao.joule.service" />
+      <option name="MAIN_CLASS_NAME" value="com.ls.mao.joule.service.AssistantServiceTest" />
+      <option name="METHOD_NAME" value="testGetAnswer" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AssistantServiceTest.testGetAnswerUsingChatModel" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="joule" />
       <extension name="coverage">
@@ -167,8 +171,8 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.AssistantServiceTest.testGetAnswer" />
       <item itemvalue="JUnit.AssistantControllerTest" />
-      <item itemvalue="JUnit.AssistantServiceRAGTest" />
       <item itemvalue="JUnit.AssistantServiceRAGTest.testGetAnswerUsingRAG_SuccessfulResponse" />
       <item itemvalue="JUnit.AssistantServiceTest" />
       <item itemvalue="JUnit.AssistantServiceTest.testGetAnswerUsingChatModel" />
@@ -177,10 +181,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.AssistantServiceTest" />
+        <item itemvalue="JUnit.AssistantServiceTest.testGetAnswer" />
         <item itemvalue="JUnit.AssistantServiceTest.testGetAnswerUsingChatModel" />
         <item itemvalue="JUnit.AssistantControllerTest" />
         <item itemvalue="JUnit.AssistantServiceRAGTest.testGetAnswerUsingRAG_SuccessfulResponse" />
-        <item itemvalue="JUnit.AssistantServiceRAGTest" />
       </list>
     </recent_temporary>
   </component>
@@ -202,7 +206,7 @@
       <updated>1730282850935</updated>
       <workItem from="1730282852017" duration="356000" />
       <workItem from="1730283234235" duration="4147000" />
-      <workItem from="1730289794952" duration="1775000" />
+      <workItem from="1730289794952" duration="7806000" />
     </task>
     <task id="LOCAL-00001" summary="implemented basic requirements and testing, spring ai todo">
       <option name="closed" value="true" />
