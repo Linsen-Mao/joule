@@ -1,5 +1,6 @@
 package com.ls.mao.joule.service;
 
+import com.ls.mao.joule.factory.ChatClientFactory;
 import com.ls.mao.joule.model.Assistant;
 import com.ls.mao.joule.repo.AssistantRepository;
 import com.ls.mao.joule.service.impl.AssistantServiceImpl;
@@ -24,6 +25,9 @@ class AssistantServiceTest {
     private AssistantRepository assistantRepository;
 
     @Mock
+    private ChatClientFactory chatClientFactory;
+
+    @Mock
     private ChatClient chatClient;
 
     private AssistantServiceImpl assistantService;
@@ -38,7 +42,7 @@ class AssistantServiceTest {
 
     @BeforeEach
     void setUp() {
-        assistantService = new AssistantServiceImpl(assistantRepository, chatClient, defaultSystemPrompt);
+        assistantService = new AssistantServiceImpl(assistantRepository, chatClientFactory, defaultSystemPrompt);
     }
 
     @Test
@@ -57,14 +61,13 @@ class AssistantServiceTest {
         assertEquals("Assistant " + name + " registered successfully.", result);
     }
 
-
     @Test
     void testRegisterAssistant_WithoutSystemPrompt() {
         String name = "GeneralAssistant";
         String response = "I am here to help you with general questions.";
         String systemPrompt = null;
 
-        Assistant assistant = new Assistant(name, response, systemPrompt);
+        Assistant assistant = new Assistant(name, response, defaultSystemPrompt);
         when(assistantRepository.findByName(name)).thenReturn(null);
         when(assistantRepository.save(any(Assistant.class))).thenReturn(assistant);
 
@@ -129,6 +132,7 @@ class AssistantServiceTest {
         Assistant assistant = new Assistant(name, response, systemPrompt);
 
         when(assistantRepository.findByName(name)).thenReturn(assistant);
+        when(chatClientFactory.createChatClient(systemPrompt)).thenReturn(chatClient);
         when(chatClient.prompt(question)).thenReturn(chatClientRequestSpec);
         when(chatClientRequestSpec.call()).thenReturn(callResponseSpec);
         when(callResponseSpec.content()).thenReturn(expectedAnswer);
@@ -137,7 +141,6 @@ class AssistantServiceTest {
 
         assertEquals(expectedAnswer, actualAnswer);
     }
-
 
     @Test
     void testGetAnswer_AssistantNotFound() {
@@ -163,6 +166,7 @@ class AssistantServiceTest {
         Assistant assistant = new Assistant(name, response, systemPrompt);
 
         when(assistantRepository.findByName(name)).thenReturn(assistant);
+        when(chatClientFactory.createChatClient(systemPrompt)).thenReturn(chatClient);
         when(chatClient.prompt(question)).thenReturn(chatClientRequestSpec);
         when(chatClientRequestSpec.call()).thenThrow(new IllegalStateException("Chat client error"));
 

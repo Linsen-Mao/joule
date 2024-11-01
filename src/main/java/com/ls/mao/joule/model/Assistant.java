@@ -15,10 +15,15 @@ public class Assistant {
     @Column(nullable = false)
     private String defaultResponse;
 
-    public Assistant(String name, String defaultResponse) {
+    @Column(nullable = false)
+    private String systemPrompt;
+
+    public Assistant(String name, String defaultResponse, String systemPrompt) {
         this.name = name;
         this.defaultResponse = defaultResponse;
+        this.systemPrompt = systemPrompt;
     }
+
 
     public Assistant() {
     }
@@ -46,4 +51,13 @@ public class Assistant {
     public void setDefaultResponse(String defaultResponse) {
         this.defaultResponse = defaultResponse;
     }
+
+    public String getSystemPrompt() {
+        return systemPrompt;
+    }
+
+    public void setSystemPrompt(String systemPrompt) {
+        this.systemPrompt = systemPrompt;
+    }
+
 }

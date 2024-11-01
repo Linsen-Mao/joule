@@ -1,6 +1,6 @@
 package com.ls.mao.joule.model;
 
-public record RegisterAssistantRequest(String name, String response) {
+public record RegisterAssistantRequest(String name, String response, String systemPrompt) {
 
     public RegisterAssistantRequest {
         if (name == null || name.isBlank()) {
