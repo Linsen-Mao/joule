@@ -15,17 +15,14 @@ public class Assistant {
     @Column(nullable = false)
     private String defaultResponse;
 
-    // Constructor
     public Assistant(String name, String defaultResponse) {
         this.name = name;
         this.defaultResponse = defaultResponse;
     }
 
     public Assistant() {
-        // Default constructor for JPA
     }
 
-    // Getters and setters
     public Long getId() {
         return id;
     }

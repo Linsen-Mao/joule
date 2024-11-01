@@ -6,6 +6,9 @@ import com.ls.mao.joule.service.AssistantService;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
+import java.util.Optional;
+
 @Service
 public class AssistantServiceImpl implements AssistantService {
 
@@ -19,6 +22,10 @@ public class AssistantServiceImpl implements AssistantService {
 
     @Override
     public String registerAssistant(String name, String response) {
+        Assistant existingAssistant = assistantRepository.findByName(name);
+        if (existingAssistant != null) {
+            throw new IllegalArgumentException("Assistant with name " + name + " already exists.");
+        }
         Assistant assistant = new Assistant(name, response);
         assistantRepository.save(assistant);
         return "Assistant " + name + " registered successfully.";
@@ -26,22 +33,22 @@ public class AssistantServiceImpl implements AssistantService {
 
     @Override
     public String getResponse(String name) {
-        Assistant assistant = assistantRepository.findByName(name);
-        return assistant != null ? assistant.getDefaultResponse() : null;
+        Assistant assistant = Optional.ofNullable(assistantRepository.findByName(name))
+                .orElseThrow(() -> new NoSuchElementException("No assistant found with name: " + name));
+        return Optional.ofNullable(assistant.getDefaultResponse())
+                .orElseThrow(() -> new NoSuchElementException("No response found for assistant: " + name));
     }
 
     @Override
     public String getAnswer(String name, String question) {
-        Assistant assistant = assistantRepository.findByName(name);
-        if (assistant == null) {
-            return "Assistant " + name + " not found.";
-        }
-
+        Assistant assistant = Optional.ofNullable(assistantRepository.findByName(name))
+                .orElseThrow(() -> new NoSuchElementException("No assistant found with name: " + name));
         try {
-            String aiGeneratedAnswer = chatClient.prompt(question).call().content();
-            return aiGeneratedAnswer != null ? aiGeneratedAnswer : "I'm sorry, I don't have an answer for that.";
+            String generatedAnswer = chatClient.prompt(question).call().content();
+            return Optional.ofNullable(generatedAnswer)
+                    .orElse("I'm sorry, I don't have an answer for that.");
         } catch (Exception e) {
-            return "An error occurred while retrieving the answer.";
+            throw new RuntimeException("An error occurred while retrieving the answer.", e);
         }
     }
 }

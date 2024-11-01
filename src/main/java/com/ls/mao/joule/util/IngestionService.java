@@ -4,85 +4,78 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.reader.pdf.PagePdfDocumentReader;
-import org.springframework.ai.transformer.splitter.TextSplitter;
 import org.springframework.ai.transformer.splitter.TokenTextSplitter;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Component
 public class IngestionService implements CommandLineRunner {
 
-    private static final Logger log = LoggerFactory.getLogger(IngestionService.class);
+    private static final Logger logger = LoggerFactory.getLogger(IngestionService.class);
     private final VectorStore vectorStore;
+    private final IngestionPolicy ingestionPolicy;
 
     @Value("file:src/main/resources/docs/*.pdf")
-    private String marketPDFsPath;
+    private String marketDocumentsPath;
 
-    @Value("${spring.ai.vectorstore.pgvector.reingest-on-start}")
-    private boolean reingestOnStart;
-
-    @Value("${spring.ai.vectorstore.pgvector.activated}")
-    private boolean activated;
-
-    public IngestionService(VectorStore vectorStore) {
+    public IngestionService(VectorStore vectorStore, IngestionPolicy ingestionPolicy) {
         this.vectorStore = vectorStore;
+        this.ingestionPolicy = ingestionPolicy;
     }
 
     @Override
-    public void run(String... args) throws Exception {
-        if(!activated){
-            log.info("RAG is inactivated");
+    public void run(String... args) {
+        if (!ingestionPolicy.shouldIngest()) {
             return;
         }
+        processDocuments();
+    }
 
-        if (!reingestOnStart) {
-            log.info("Embeddings already exist in VectorStore. Skipping ingestion.");
-            return;
-        }
-
-        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        Resource[] marketPDFs;
+    private void processDocuments() {
         try {
-            marketPDFs = resolver.getResources(marketPDFsPath);
+            loadDocumentsInBatches(marketDocumentsPath, 100)
+                    .forEach(batch -> {
+                        List<Document> sanitizedBatch = batch.stream()
+                                .map(document -> new Document(document.getContent().replaceAll("\u0000", ""), document.getMetadata()))
+                                .collect(Collectors.toList());
+                        vectorStore.accept(new TokenTextSplitter().apply(sanitizedBatch));
+                    });
+            logger.info("VectorStore loaded with data successfully!");
         } catch (Exception e) {
-            log.error("Failed to load resources from path: " + marketPDFsPath, e);
-            return;
+            logger.error("An error occurred during document ingestion", e);
         }
+    }
 
-        if (marketPDFs == null || marketPDFs.length == 0) {
-            log.info("No PDF files found for ingestion. Skipping embedding.");
-            return;
+    private List<List<Document>> loadDocumentsInBatches(String path, int batchSize) throws IOException {
+        List<Document> documents = loadDocuments(path);
+        List<List<Document>> batches = new ArrayList<>();
+        for (int i = 0; i < documents.size(); i += batchSize) {
+            batches.add(documents.subList(i, Math.min(i + batchSize, documents.size())));
         }
+        return batches;
+    }
 
-        TextSplitter textSplitter = new TokenTextSplitter();
-        List<Document> sanitizedDocuments = Arrays.stream(marketPDFs)
+    private List<Document> loadDocuments(String path) throws IOException {
+        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        return Arrays.stream(resolver.getResources(path))
                 .flatMap(resource -> {
                     try {
-                        var pdfReader = new PagePdfDocumentReader(resource);
-                        return pdfReader.get().stream()
-                                .map(document -> new Document(document.getContent().replaceAll("\u0000", ""), document.getMetadata()));
+                        return new PagePdfDocumentReader(resource).get().stream();
                     } catch (Exception e) {
-                        log.error("Error reading PDF file: " + resource.getFilename(), e);
-                        return null;
+                        logger.error("Error reading PDF file: {}", resource.getFilename(), e);
+                        return Stream.empty();
                     }
                 })
-                .filter(doc -> doc != null)
                 .collect(Collectors.toList());
-
-        if (sanitizedDocuments.isEmpty()) {
-            log.info("No valid documents found after processing PDFs. Skipping embedding.");
-            return;
-        }
-
-        vectorStore.accept(textSplitter.apply(sanitizedDocuments));
-        log.info("VectorStore Loaded with data!");
     }
 }

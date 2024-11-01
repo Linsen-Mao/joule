@@ -4,12 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="06733696-4eea-4d93-b4fa-c98d4dc550b3" name="Changes" comment="support RAG disabled, support multiple PDFs">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/handler/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/prompt/system-prompt.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/config/ChatClientConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/config/ChatClientConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/config/ChatClientConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/config/ChatClientConfig.class" afterDir="false" />
+    <list default="true" id="06733696-4eea-4d93-b4fa-c98d4dc550b3" name="Changes" comment="adjust the test as introducing global exception handler">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/util/DefaultIngestionPolicy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/util/IngestionPolicy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/controller/AssistantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/controller/AssistantController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/model/Assistant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/model/Assistant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/service/impl/AssistantServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/service/impl/AssistantServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/util/IngestionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/util/IngestionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/controller/AssistantController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/controller/AssistantController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/service/impl/AssistantServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/service/impl/AssistantServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/util/IngestionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ls/mao/joule/util/IngestionService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/ls/mao/joule/controller/AssistantControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/ls/mao/joule/controller/AssistantControllerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/ls/mao/joule/service/AssistantServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/ls/mao/joule/service/AssistantServiceTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +28,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -70,7 +80,7 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.JouleApplication.executor": "Debug",
+    "Spring Boot.JouleApplication.executor": "Run",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/linsen/GenAI/joule",
@@ -187,9 +197,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Docker.compose.yaml: Compose Deployment" />
         <item itemvalue="JUnit.AssistantServiceTest" />
         <item itemvalue="JUnit.AssistantControllerTest" />
+        <item itemvalue="Docker.compose.yaml: Compose Deployment" />
         <item itemvalue="JUnit.JouleApplicationTests" />
         <item itemvalue="JUnit.AssistantServiceTest.testGetAnswer" />
       </list>
@@ -216,7 +226,7 @@
       <workItem from="1730289794952" duration="10527000" />
       <workItem from="1730358114385" duration="7184000" />
       <workItem from="1730385197584" duration="1690000" />
-      <workItem from="1730386898433" duration="10607000" />
+      <workItem from="1730386898433" duration="17118000" />
     </task>
     <task id="LOCAL-00001" summary="implemented basic requirements and testing, spring ai todo">
       <option name="closed" value="true" />
@@ -266,7 +276,23 @@
       <option name="project" value="LOCAL" />
       <updated>1730393190408</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="add GlobalExceptionHandler, refactor ChatClientConfig">
+      <option name="closed" value="true" />
+      <created>1730438458690</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1730438458690</updated>
+    </task>
+    <task id="LOCAL-00008" summary="adjust the test as introducing global exception handler">
+      <option name="closed" value="true" />
+      <created>1730443732907</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1730443732907</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -290,6 +316,8 @@
     <MESSAGE value="update README.md" />
     <MESSAGE value="remove doc" />
     <MESSAGE value="support RAG disabled, support multiple PDFs" />
-    <option name="LAST_COMMIT_MESSAGE" value="support RAG disabled, support multiple PDFs" />
+    <MESSAGE value="add GlobalExceptionHandler, refactor ChatClientConfig" />
+    <MESSAGE value="adjust the test as introducing global exception handler" />
+    <option name="LAST_COMMIT_MESSAGE" value="adjust the test as introducing global exception handler" />
   </component>
 </project>
