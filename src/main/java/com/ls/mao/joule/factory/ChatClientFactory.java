@@ -4,27 +4,27 @@ import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.client.advisor.QuestionAnswerAdvisor;
 import org.springframework.ai.chat.memory.InMemoryChatMemory;
+import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
-import java.util.Optional;
 
 @Component
 public class ChatClientFactory {
 
     @Value("${spring.ai.vectorstore.pgvector.activated}")
     private boolean isPgVectorActivated;
-
-    private final VectorStore vectorStore;
     private ChatClient.Builder builder;
 
-    public ChatClientFactory(Optional<VectorStore> vectorStore, ChatClient.Builder builder) {
-        this.vectorStore = vectorStore.orElse(null);
+    private final VectorStore vectorStore;
+
+    public ChatClientFactory(VectorStore vectorStore, ChatClient.Builder builder) {
+        this.vectorStore = vectorStore;
         this.builder = builder;
     }
 
     public ChatClient createChatClient(String systemPrompt) {
+
         builder.defaultAdvisors(new MessageChatMemoryAdvisor(new InMemoryChatMemory()));
 
         if (systemPrompt != null) {
@@ -32,7 +32,7 @@ public class ChatClientFactory {
         }
 
         if (isPgVectorActivated && vectorStore != null) {
-            builder.defaultAdvisors(new QuestionAnswerAdvisor(vectorStore));
+            builder.defaultAdvisors(new QuestionAnswerAdvisor(vectorStore, SearchRequest.defaults()));
         }
 
         return builder.build();

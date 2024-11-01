@@ -52,7 +52,7 @@ If it is the first time you upload the PDFs, set this attribute to be true to em
 spring.ai.vectorstore.pgvector.reingest-on-start=true
 ```
 
-Then upload the **PDF** files under the **resources/docs** folder
+Upload the **PDF** files under the **resources/docs** folder, then maintain the 
 
 ### 3. Build and Run the Application
 

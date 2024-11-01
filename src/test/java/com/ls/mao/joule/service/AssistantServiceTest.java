@@ -14,6 +14,7 @@ import org.springframework.ai.chat.client.ChatClient.CallResponseSpec;
 import org.springframework.ai.chat.client.ChatClient.ChatClientRequestSpec;
 
 import java.util.NoSuchElementException;
+import java.util.function.Consumer;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -134,6 +135,7 @@ class AssistantServiceTest {
         when(assistantRepository.findByName(name)).thenReturn(assistant);
         when(chatClientFactory.createChatClient(systemPrompt)).thenReturn(chatClient);
         when(chatClient.prompt(question)).thenReturn(chatClientRequestSpec);
+        when(chatClientRequestSpec.advisors(any(Consumer.class))).thenReturn(chatClientRequestSpec);
         when(chatClientRequestSpec.call()).thenReturn(callResponseSpec);
         when(callResponseSpec.content()).thenReturn(expectedAnswer);
 
@@ -168,6 +170,7 @@ class AssistantServiceTest {
         when(assistantRepository.findByName(name)).thenReturn(assistant);
         when(chatClientFactory.createChatClient(systemPrompt)).thenReturn(chatClient);
         when(chatClient.prompt(question)).thenReturn(chatClientRequestSpec);
+        when(chatClientRequestSpec.advisors(any(Consumer.class))).thenReturn(chatClientRequestSpec);
         when(chatClientRequestSpec.call()).thenThrow(new IllegalStateException("Chat client error"));
 
         RuntimeException exception = assertThrows(RuntimeException.class, () -> {

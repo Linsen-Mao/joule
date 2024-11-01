@@ -11,7 +11,7 @@ public interface AssistantService {
      * @param response the default response for the assistant
      * @return a success message
      */
-    String registerAssistant(String name, String response);
+    String registerAssistant(String name, String response, String systemPrompt);
 
     /**
      * Retrieves the default response of the assistant with the given name.

@@ -1,17 +1,18 @@
 package com.ls.mao.joule.controller;
 
 import com.ls.mao.joule.service.AssistantService;
+import com.ls.mao.joule.util.PdfService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.NoSuchElementException;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(AssistantController.class)
@@ -22,6 +23,9 @@ class AssistantControllerTest {
 
     @MockBean
     private AssistantService assistantService;
+
+    @MockBean
+    private PdfService pdfService;
 
     @Test
     void testRegisterAssistant_WithSystemPrompt() throws Exception {
@@ -132,4 +136,24 @@ class AssistantControllerTest {
                 .andExpect(jsonPath("$.status").value("error"))
                 .andExpect(jsonPath("$.message").value("No answer found for the given question"));
     }
+
+    @Test
+    void testUploadPdf() throws Exception {
+        MockMultipartFile mockFile = new MockMultipartFile(
+                "file",
+                "test.pdf",
+                MediaType.APPLICATION_PDF_VALUE,
+                "Dummy PDF content".getBytes()
+        );
+
+        when(pdfService.uploadPdf("SAPAssistant", mockFile))
+                .thenReturn("PDF file uploaded successfully for assistant: SAPAssistant");
+
+        mockMvc.perform(multipart("/api/v1/assistant/SAPAssistant/upload")
+                        .file(mockFile))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.status").value("success"))
+                .andExpect(jsonPath("$.message").value("PDF file uploaded successfully for assistant: SAPAssistant"));
+    }
+
 }

@@ -7,75 +7,51 @@ import org.springframework.ai.reader.pdf.PagePdfDocumentReader;
 import org.springframework.ai.transformer.splitter.TokenTextSplitter;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Component
-public class IngestionService implements CommandLineRunner {
+public class IngestionService {
 
     private static final Logger logger = LoggerFactory.getLogger(IngestionService.class);
     private final VectorStore vectorStore;
-    private final IngestionPolicy ingestionPolicy;
 
-    @Value("file:src/main/resources/docs/*.pdf")
-    private String marketDocumentsPath;
+    @Value("${file.upload-dir}")
+    private String pdfUploadDirectory;
 
-    public IngestionService(VectorStore vectorStore, IngestionPolicy ingestionPolicy) {
+    public IngestionService(VectorStore vectorStore) {
         this.vectorStore = vectorStore;
-        this.ingestionPolicy = ingestionPolicy;
     }
 
-    @Override
-    public void run(String... args) {
-        if (!ingestionPolicy.shouldIngest()) {
-            return;
-        }
-        processDocuments();
-    }
 
-    private void processDocuments() {
+    public void ingestPdfFile(String assistantName, String pdfFileName) {
         try {
-            loadDocumentsInBatches(marketDocumentsPath, 100)
-                    .forEach(batch -> {
-                        List<Document> sanitizedBatch = batch.stream()
-                                .map(document -> new Document(document.getContent().replaceAll("\u0000", ""), document.getMetadata()))
-                                .collect(Collectors.toList());
-                        vectorStore.accept(new TokenTextSplitter().apply(sanitizedBatch));
-                    });
-            logger.info("VectorStore loaded with data successfully!");
-        } catch (Exception e) {
-            logger.error("An error occurred during document ingestion", e);
-        }
-    }
+            File pdfFile = new File(pdfUploadDirectory, pdfFileName);
+            Resource resource = new UrlResource(pdfFile.toURI());
 
-    private List<List<Document>> loadDocumentsInBatches(String path, int batchSize) throws IOException {
-        List<Document> documents = loadDocuments(path);
-        List<List<Document>> batches = new ArrayList<>();
-        for (int i = 0; i < documents.size(); i += batchSize) {
-            batches.add(documents.subList(i, Math.min(i + batchSize, documents.size())));
-        }
-        return batches;
-    }
+            if (resource.exists() && resource.isReadable()) {
+                List<Document> documents = new PagePdfDocumentReader(resource).get().stream()
+                        .map(document -> {
+                            document = new Document(document.getContent().replaceAll("\u0000", ""), document.getMetadata());
+                            Map<String, Object> metadata = document.getMetadata();
+                            metadata.put("assistant", assistantName);
+                            return new Document(document.getContent(), metadata);
+                        })
+                        .collect(Collectors.toList());
 
-    private List<Document> loadDocuments(String path) throws IOException {
-        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        return Arrays.stream(resolver.getResources(path))
-                .flatMap(resource -> {
-                    try {
-                        return new PagePdfDocumentReader(resource).get().stream();
-                    } catch (Exception e) {
-                        logger.error("Error reading PDF file: {}", resource.getFilename(), e);
-                        return Stream.empty();
-                    }
-                })
-                .collect(Collectors.toList());
+                vectorStore.accept(new TokenTextSplitter().apply(documents));
+                logger.info("Ingested PDF '{}' for assistant '{}'", pdfFileName, assistantName);
+            } else {
+                logger.warn("PDF '{}' for assistant '{}' could not be read", pdfFileName, assistantName);
+            }
+        } catch (IOException e) {
+            logger.error("Failed to ingest PDF '{}' for assistant '{}'", pdfFileName, assistantName, e);
+        }
     }
 }

@@ -2,12 +2,13 @@ package com.ls.mao.joule.controller;
 
 import com.ls.mao.joule.model.*;
 import com.ls.mao.joule.service.AssistantService;
+import com.ls.mao.joule.util.PdfService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 
 @RestController
 @RequestMapping("/api/v1/assistant")
@@ -17,8 +18,11 @@ public class AssistantController {
 
     private final AssistantService assistantService;
 
-    public AssistantController(AssistantService assistantService) {
+    private final PdfService pdfService;
+
+    public AssistantController(AssistantService assistantService, PdfService pdfService) {
         this.assistantService = assistantService;
+        this.pdfService = pdfService;
     }
 
     /**
@@ -29,7 +33,7 @@ public class AssistantController {
     @PostMapping("/register")
     public ResponseEntity<ApiResponse> registerAssistant(@RequestBody RegisterAssistantRequest request) {
         logger.info("Registering assistant with name: {}", request.name());
-        String result = assistantService.registerAssistant(request.name(), request.response());
+        String result = assistantService.registerAssistant(request.name(), request.response(),request.systemPrompt());
         return ResponseEntity.ok(ApiResponse.success(result));
     }
 
@@ -56,5 +60,13 @@ public class AssistantController {
     public ResponseEntity<ApiResponse> getAnswer(@PathVariable String name, @RequestBody QuestionRequest request) {
         String answer = assistantService.getAnswer(name, request.question());
         return ResponseEntity.ok(ApiResponse.success(answer));
+    }
+
+    @PostMapping("/{name}/upload")
+    public ResponseEntity<ApiResponse> uploadPdf(
+            @PathVariable String name,
+            @RequestParam("file") MultipartFile file) {
+            String result = pdfService.uploadPdf(name, file);
+            return ResponseEntity.ok(ApiResponse.success(result));
     }
 }
