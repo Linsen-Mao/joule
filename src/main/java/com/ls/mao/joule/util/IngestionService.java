@@ -35,9 +35,12 @@ public class IngestionService {
     @Async
     @EventListener
     public void handlePdfUploadedEvent(PdfEmbeddingEvent event) {
-        String assistantName = event.getAssistantName();
-        String pdfFileName = event.getPdfFileName();
-        ingestPdfFile(assistantName, pdfFileName);
+        if (event.getAssistantName() == null || event.getAssistantName().isEmpty() ||
+                event.getPdfFileName() == null || event.getPdfFileName().isEmpty()) {
+            logger.error("Invalid event data: assistantName or pdfFileName is missing");
+            return;
+        }
+        ingestPdfFile(event.getAssistantName(), event.getPdfFileName());
     }
 
 
