@@ -44,9 +44,12 @@ If you want to use RAG (Retrieval-Augmented Generation), activate it by setting 
 spring.ai.vectorstore.pgvector.activated=true
 ```
 
+**Note: Please upload documents first if you choose to use RAG.**
 ### 3. Build and Run the Application
 
 Once configured, build and run the application. The service will start on **`http://localhost:8080`**.
+
+**Note: You can run test first to make sure the configuration is correct**
 
 ---
 
