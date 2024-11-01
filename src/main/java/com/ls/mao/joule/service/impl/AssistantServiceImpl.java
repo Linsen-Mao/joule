@@ -4,17 +4,26 @@ import com.ls.mao.joule.factory.ChatClientFactory;
 import com.ls.mao.joule.model.Assistant;
 import com.ls.mao.joule.repo.AssistantRepository;
 import com.ls.mao.joule.service.AssistantService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.QuestionAnswerAdvisor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
 public class AssistantServiceImpl implements AssistantService {
 
+    private static final Logger logger = LoggerFactory.getLogger(AssistantServiceImpl.class);
+
+    private static final String ASSISTANT_ALREADY_EXISTS = "Assistant with name %s already exists.";
+    private static final String ASSISTANT_NOT_FOUND = "No assistant found with name: %s";
+    private static final String DEFAULT_NO_ANSWER_MESSAGE = "I'm sorry, I don't have an answer for that.";
 
     private final AssistantRepository assistantRepository;
     private final ChatClientFactory chatClientFactory;
@@ -29,27 +38,30 @@ public class AssistantServiceImpl implements AssistantService {
     }
 
     @Override
+    @Transactional
     public String registerAssistant(String name, String response, String systemPrompt) {
+        logger.info("Registering assistant: {}", name);
         if (assistantRepository.findByName(name) != null) {
-            throw new IllegalArgumentException("Assistant with name " + name + " already exists.");
+            throw new IllegalArgumentException(String.format(ASSISTANT_ALREADY_EXISTS, name));
         }
-        if (systemPrompt == null || systemPrompt.isEmpty()) {
-            systemPrompt = defaultSystemPrompt;
-        }
+        systemPrompt = Objects.requireNonNullElse(systemPrompt, defaultSystemPrompt);
         Assistant assistant = new Assistant(name, response, systemPrompt);
         assistantRepository.save(assistant);
+        logger.info("Assistant {} registered successfully.", name);
         return "Assistant " + name + " registered successfully.";
     }
 
     @Override
     public String getResponse(String name) {
+        logger.info("Retrieving default response for assistant: {}", name);
         Assistant assistant = getAssistant(name);
         return Optional.ofNullable(assistant.getDefaultResponse())
-                .orElseThrow(() -> new NoSuchElementException("No response found for assistant: " + name));
+                .orElseThrow(() -> new NoSuchElementException(String.format(ASSISTANT_NOT_FOUND, name)));
     }
 
     @Override
     public String getAnswer(String name, String question) {
+        logger.info("Retrieving answer for assistant: {}, question: {}", name, question);
         Assistant assistant = getAssistant(name);
 
         ChatClient chatClient = chatClientFactory.createChatClient(assistant.getSystemPrompt());
@@ -62,15 +74,17 @@ public class AssistantServiceImpl implements AssistantService {
                     .content();
 
             return Optional.ofNullable(generatedAnswer)
-                    .orElse("I'm sorry, I don't have an answer for that.");
+                    .orElse(DEFAULT_NO_ANSWER_MESSAGE);
         } catch (Exception e) {
+            logger.error("An error occurred while retrieving the answer for assistant: {}", name, e);
             throw new RuntimeException("An error occurred while retrieving the answer.", e);
         }
     }
 
     @Override
     public Assistant getAssistant(String name) {
+        logger.info("Fetching assistant with name: {}", name);
         return Optional.ofNullable(assistantRepository.findByName(name))
-                .orElseThrow(() -> new NoSuchElementException("No assistant found with name: " + name));
+                .orElseThrow(() -> new NoSuchElementException(String.format(ASSISTANT_NOT_FOUND, name)));
     }
 }
