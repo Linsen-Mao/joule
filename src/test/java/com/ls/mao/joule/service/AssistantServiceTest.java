@@ -3,9 +3,9 @@ package com.ls.mao.joule.service;
 import com.ls.mao.joule.model.Assistant;
 import com.ls.mao.joule.repo.AssistantRepository;
 import com.ls.mao.joule.service.impl.AssistantServiceImpl;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.ai.chat.client.ChatClient;
@@ -26,7 +26,6 @@ class AssistantServiceTest {
     @Mock
     private ChatClient chatClient;
 
-    @InjectMocks
     private AssistantServiceImpl assistantService;
 
     @Mock
@@ -35,15 +34,41 @@ class AssistantServiceTest {
     @Mock
     private CallResponseSpec callResponseSpec;
 
+    private final String defaultSystemPrompt = "You are an AI assistant designed to answer questions accurately and concisely.";
+
+    @BeforeEach
+    void setUp() {
+        assistantService = new AssistantServiceImpl(assistantRepository, chatClient, defaultSystemPrompt);
+    }
+
     @Test
-    void testRegisterAssistant() {
+    void testRegisterAssistant_WithSystemPrompt() {
         String name = "SAPAssistant";
         String response = "I am here to help you with SAP questions.";
+        String systemPrompt = "You are an SAP expert.";
+
+        Assistant assistant = new Assistant(name, response, systemPrompt);
 
         when(assistantRepository.findByName(name)).thenReturn(null);
-        when(assistantRepository.save(any(Assistant.class))).thenReturn(new Assistant(name, response));
+        when(assistantRepository.save(any(Assistant.class))).thenReturn(assistant);
 
-        String result = assistantService.registerAssistant(name, response);
+        String result = assistantService.registerAssistant(name, response, systemPrompt);
+
+        assertEquals("Assistant " + name + " registered successfully.", result);
+    }
+
+
+    @Test
+    void testRegisterAssistant_WithoutSystemPrompt() {
+        String name = "GeneralAssistant";
+        String response = "I am here to help you with general questions.";
+        String systemPrompt = null;
+
+        Assistant assistant = new Assistant(name, response, systemPrompt);
+        when(assistantRepository.findByName(name)).thenReturn(null);
+        when(assistantRepository.save(any(Assistant.class))).thenReturn(assistant);
+
+        String result = assistantService.registerAssistant(name, response, systemPrompt);
 
         assertEquals("Assistant " + name + " registered successfully.", result);
     }
@@ -52,12 +77,14 @@ class AssistantServiceTest {
     void testRegisterAssistant_AssistantAlreadyExists() {
         String name = "SAPAssistant";
         String response = "I am here to help you with SAP questions.";
-        Assistant existingAssistant = new Assistant(name, response);
+        String systemPrompt = "You are an SAP expert.";
+
+        Assistant existingAssistant = new Assistant(name, response, systemPrompt);
 
         when(assistantRepository.findByName(name)).thenReturn(existingAssistant);
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            assistantService.registerAssistant(name, response);
+            assistantService.registerAssistant(name, response, systemPrompt);
         });
 
         assertEquals("Assistant with name " + name + " already exists.", exception.getMessage());
@@ -67,7 +94,9 @@ class AssistantServiceTest {
     void testGetAssistantResponse() {
         String name = "SAPAssistant";
         String expectedResponse = "I am here to help you with SAP questions.";
-        Assistant assistant = new Assistant(name, expectedResponse);
+        String systemPrompt = "You are an SAP expert.";
+
+        Assistant assistant = new Assistant(name, expectedResponse, systemPrompt);
 
         when(assistantRepository.findByName(name)).thenReturn(assistant);
 
@@ -94,8 +123,10 @@ class AssistantServiceTest {
         String name = "SAPAssistant";
         String question = "What is SAP S/4HANA?";
         String expectedAnswer = "SAP S/4HANA is an integrated ERP system utilizing modern in-memory technology.";
+        String response = "Default response";
+        String systemPrompt = "You are an SAP expert.";
 
-        Assistant assistant = new Assistant(name, "Default response");
+        Assistant assistant = new Assistant(name, response, systemPrompt);
 
         when(assistantRepository.findByName(name)).thenReturn(assistant);
         when(chatClient.prompt(question)).thenReturn(chatClientRequestSpec);
@@ -106,6 +137,7 @@ class AssistantServiceTest {
 
         assertEquals(expectedAnswer, actualAnswer);
     }
+
 
     @Test
     void testGetAnswer_AssistantNotFound() {
@@ -125,8 +157,10 @@ class AssistantServiceTest {
     void testGetAnswer_ChatClientError() {
         String name = "SAPAssistant";
         String question = "What is SAP S/4HANA?";
+        String response = "Default response";
+        String systemPrompt = "You are an SAP expert.";
 
-        Assistant assistant = new Assistant(name, "Default response");
+        Assistant assistant = new Assistant(name, response, systemPrompt);
 
         when(assistantRepository.findByName(name)).thenReturn(assistant);
         when(chatClient.prompt(question)).thenReturn(chatClientRequestSpec);
