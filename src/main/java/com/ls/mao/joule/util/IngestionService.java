@@ -1,5 +1,6 @@
 package com.ls.mao.joule.util;
 
+import com.ls.mao.joule.event.PdfEmbeddingEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ai.document.Document;
@@ -9,12 +10,14 @@ import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
+import org.springframework.context.event.EventListener;
 
 @Component
 public class IngestionService {
@@ -29,8 +32,16 @@ public class IngestionService {
         this.vectorStore = vectorStore;
     }
 
+    @Async
+    @EventListener
+    public void handlePdfUploadedEvent(PdfEmbeddingEvent event) {
+        String assistantName = event.getAssistantName();
+        String pdfFileName = event.getPdfFileName();
+        ingestPdfFile(assistantName, pdfFileName);
+    }
 
-    public void ingestPdfFile(String assistantName, String pdfFileName) {
+
+    private void ingestPdfFile(String assistantName, String pdfFileName) {
         try {
             File pdfFile = new File(pdfUploadDirectory, pdfFileName);
             Resource resource = new UrlResource(pdfFile.toURI());

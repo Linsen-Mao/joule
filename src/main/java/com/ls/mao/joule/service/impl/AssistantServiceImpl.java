@@ -43,16 +43,14 @@ public class AssistantServiceImpl implements AssistantService {
 
     @Override
     public String getResponse(String name) {
-        Assistant assistant = Optional.ofNullable(assistantRepository.findByName(name))
-                .orElseThrow(() -> new NoSuchElementException("No assistant found with name: " + name));
+        Assistant assistant = getAssistant(name);
         return Optional.ofNullable(assistant.getDefaultResponse())
                 .orElseThrow(() -> new NoSuchElementException("No response found for assistant: " + name));
     }
 
     @Override
     public String getAnswer(String name, String question) {
-        Assistant assistant = Optional.ofNullable(assistantRepository.findByName(name))
-                .orElseThrow(() -> new NoSuchElementException("No assistant found with name: " + name));
+        Assistant assistant = getAssistant(name);
 
         ChatClient chatClient = chatClientFactory.createChatClient(assistant.getSystemPrompt());
 
@@ -68,5 +66,11 @@ public class AssistantServiceImpl implements AssistantService {
         } catch (Exception e) {
             throw new RuntimeException("An error occurred while retrieving the answer.", e);
         }
+    }
+
+    @Override
+    public Assistant getAssistant(String name) {
+        return Optional.ofNullable(assistantRepository.findByName(name))
+                .orElseThrow(() -> new NoSuchElementException("No assistant found with name: " + name));
     }
 }

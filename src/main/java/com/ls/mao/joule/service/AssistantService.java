@@ -1,6 +1,7 @@
 package com.ls.mao.joule.service;
 
 
+import com.ls.mao.joule.model.Assistant;
 
 public interface AssistantService {
 
@@ -31,4 +32,6 @@ public interface AssistantService {
      */
     String getAnswer(String name, String question);
 
+
+    Assistant getAssistant(String name);
 }

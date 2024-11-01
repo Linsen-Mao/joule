@@ -14,7 +14,7 @@ public class ChatClientFactory {
 
     @Value("${spring.ai.vectorstore.pgvector.activated}")
     private boolean isPgVectorActivated;
-    private ChatClient.Builder builder;
+    private final ChatClient.Builder builder;
 
     private final VectorStore vectorStore;
 

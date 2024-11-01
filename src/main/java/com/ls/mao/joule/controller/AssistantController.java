@@ -1,10 +1,11 @@
 package com.ls.mao.joule.controller;
 
+import com.ls.mao.joule.event.PdfUploadRequestEvent;
 import com.ls.mao.joule.model.*;
 import com.ls.mao.joule.service.AssistantService;
-import com.ls.mao.joule.util.PdfService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,12 +18,11 @@ public class AssistantController {
     private static final Logger logger = LoggerFactory.getLogger(AssistantController.class);
 
     private final AssistantService assistantService;
+    private final ApplicationEventPublisher eventPublisher;
 
-    private final PdfService pdfService;
-
-    public AssistantController(AssistantService assistantService, PdfService pdfService) {
+    public AssistantController(AssistantService assistantService, ApplicationEventPublisher eventPublisher) {
         this.assistantService = assistantService;
-        this.pdfService = pdfService;
+        this.eventPublisher = eventPublisher;
     }
 
     /**
@@ -62,11 +62,20 @@ public class AssistantController {
         return ResponseEntity.ok(ApiResponse.success(answer));
     }
 
+    /**
+     * Uploads pdf for specific assistant
+     * @param name
+     * @param file
+     * @return
+     */
     @PostMapping("/{name}/upload")
     public ResponseEntity<ApiResponse> uploadPdf(
             @PathVariable String name,
             @RequestParam("file") MultipartFile file) {
-            String result = pdfService.uploadPdf(name, file);
-            return ResponseEntity.ok(ApiResponse.success(result));
+
+        Assistant assistant = assistantService.getAssistant(name);
+        logger.debug("Publishing PDF upload event for assistant: {}", assistant.getName());
+        eventPublisher.publishEvent(new PdfUploadRequestEvent(this, name, file));
+        return ResponseEntity.ok(ApiResponse.success("PDF upload event published for assistant: " + name));
     }
 }
