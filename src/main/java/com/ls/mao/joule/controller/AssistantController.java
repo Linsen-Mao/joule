@@ -39,22 +39,8 @@ public class AssistantController {
      * @return
      */
     @GetMapping("/{name}")
-    public ResponseEntity<ApiResponse> getAssistantResponse(@PathVariable("name") String name) {
-        if (!StringUtils.hasText(name)) {
-            logger.warn("Assistant name is null or empty");
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(ApiResponse.error("Assistant name must not be null or empty"));
-        }
-
-        logger.info("Fetching response for assistant with name: {}", name);
+    public ResponseEntity<ApiResponse> getAssistantResponse(@PathVariable String name) {
         String response = assistantService.getResponse(name);
-
-        if (response == null) {
-            logger.warn("No response found for assistant: {}", name);
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(ApiResponse.error("No response found for assistant: " + name));
-        }
-
         return ResponseEntity.ok(ApiResponse.success(response));
     }
 
@@ -65,19 +51,10 @@ public class AssistantController {
      * @param request
      * @return
      */
+
     @PostMapping("/{name}/answer")
-    public ResponseEntity<ApiResponse> getAnswer(
-            @PathVariable("name") String name,
-            @RequestBody QuestionRequest request) {
-
+    public ResponseEntity<ApiResponse> getAnswer(@PathVariable String name, @RequestBody QuestionRequest request) {
         String answer = assistantService.getAnswer(name, request.question());
-
-        if (answer == null || answer.isEmpty()) {
-            logger.warn("No answer found for assistant: {} and question: {}", name, request.question());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(ApiResponse.error("No answer found for the given question"));
-        }
-
         return ResponseEntity.ok(ApiResponse.success(answer));
     }
 }
