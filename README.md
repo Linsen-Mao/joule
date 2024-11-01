@@ -103,8 +103,8 @@ You can interact with the service using HTTP requests via tools like **Postman**
 
       ```json
       {
-        "status": "error",
-        "message": "No response found for assistant: Joule1"
+       "status": "error",
+       "message": "No assistant found with name: Joule1"
       }
       ```
 
