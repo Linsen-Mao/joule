@@ -4,9 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="06733696-4eea-4d93-b4fa-c98d4dc550b3" name="Changes" comment="update service for exception handler">
+    <list default="true" id="06733696-4eea-4d93-b4fa-c98d4dc550b3" name="Changes" comment="add test for customized system prompt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/config/ChatClientConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/config/ChatClientConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/controller/AssistantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/controller/AssistantController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/model/Assistant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/model/Assistant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/model/RegisterAssistantRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/model/RegisterAssistantRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/service/AssistantService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/service/AssistantService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/service/impl/AssistantServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ls/mao/joule/service/impl/AssistantServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,40 +58,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Docker.compose.yaml: Compose Deployment.executor": "Run",
-    "JUnit.AssistantControllerTest.executor": "Run",
-    "JUnit.AssistantServiceRAGTest.executor": "Run",
-    "JUnit.AssistantServiceRAGTest.testGetAnswerUsingRAG_SuccessfulResponse.executor": "Run",
-    "JUnit.AssistantServiceTest.executor": "Run",
-    "JUnit.AssistantServiceTest.testGetAnswer.executor": "Run",
-    "JUnit.AssistantServiceTest.testGetAnswerUsingChatModel.executor": "Run",
-    "JUnit.JouleApplicationTests.executor": "Run",
-    "Maven.joule [clean].executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.JouleApplication.executor": "Run",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/linsen/GenAI/joule",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Docker.compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AssistantControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AssistantControllerTest.testGetAssistantResponse.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AssistantServiceRAGTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AssistantServiceRAGTest.testGetAnswerUsingRAG_SuccessfulResponse.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AssistantServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AssistantServiceTest.testGetAnswer.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AssistantServiceTest.testGetAnswerUsingChatModel.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AssistantServiceTest.testGetAnswer_ChatClientError.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AssistantServiceTest.testRegisterAssistant_WithSystemPrompt.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.JouleApplicationTests.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.joule [clean].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.JouleApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/linsen/GenAI/joule&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -137,17 +146,34 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="JouleApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AssistantServiceTest.testGetAnswer_ChatClientError" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="joule" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.ls.mao.joule.*" />
+          <option name="PATTERN" value="com.ls.mao.joule.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.ls.mao.joule" />
-      <option name="MAIN_CLASS_NAME" value="com.ls.mao.joule.JouleApplicationTests" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="com.ls.mao.joule.service" />
+      <option name="MAIN_CLASS_NAME" value="com.ls.mao.joule.service.AssistantServiceTest" />
+      <option name="METHOD_NAME" value="testGetAnswer_ChatClientError" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AssistantServiceTest.testRegisterAssistant_WithSystemPrompt" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="joule" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ls.mao.joule.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ls.mao.joule.service" />
+      <option name="MAIN_CLASS_NAME" value="com.ls.mao.joule.service.AssistantServiceTest" />
+      <option name="METHOD_NAME" value="testRegisterAssistant_WithSystemPrompt" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -168,17 +194,9 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="compose.yaml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="sourceFilePath" value="compose.yaml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="Docker.compose.yaml: Compose Deployment" />
-      <item itemvalue="JUnit.JouleApplicationTests" />
+      <item itemvalue="JUnit.AssistantServiceTest.testGetAnswer_ChatClientError" />
+      <item itemvalue="JUnit.AssistantServiceTest.testRegisterAssistant_WithSystemPrompt" />
       <item itemvalue="JUnit.AssistantServiceTest.testGetAnswer" />
       <item itemvalue="JUnit.AssistantControllerTest" />
       <item itemvalue="JUnit.AssistantServiceTest" />
@@ -187,9 +205,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.AssistantServiceTest" />
+        <item itemvalue="JUnit.AssistantServiceTest.testRegisterAssistant_WithSystemPrompt" />
         <item itemvalue="JUnit.AssistantControllerTest" />
-        <item itemvalue="Docker.compose.yaml: Compose Deployment" />
-        <item itemvalue="JUnit.JouleApplicationTests" />
+        <item itemvalue="JUnit.AssistantServiceTest.testGetAnswer_ChatClientError" />
         <item itemvalue="JUnit.AssistantServiceTest.testGetAnswer" />
       </list>
     </recent_temporary>
@@ -215,7 +233,7 @@
       <workItem from="1730289794952" duration="10527000" />
       <workItem from="1730358114385" duration="7184000" />
       <workItem from="1730385197584" duration="1690000" />
-      <workItem from="1730386898433" duration="18198000" />
+      <workItem from="1730386898433" duration="21076000" />
     </task>
     <task id="LOCAL-00001" summary="implemented basic requirements and testing, spring ai todo">
       <option name="closed" value="true" />
@@ -297,15 +315,49 @@
       <option name="project" value="LOCAL" />
       <updated>1730446613883</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="update controller for exception handler">
+      <option name="closed" value="true" />
+      <created>1730448992136</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1730448992136</updated>
+    </task>
+    <task id="LOCAL-00012" summary="update controller for exception handler">
+      <option name="closed" value="true" />
+      <created>1730449058724</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1730449058724</updated>
+    </task>
+    <task id="LOCAL-00013" summary="add test for customized system prompt">
+      <option name="closed" value="true" />
+      <created>1730451770031</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1730451770031</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="1deeff48-a7b1-4046-bf23-45e419c359a0" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
+        <entry key="1deeff48-a7b1-4046-bf23-45e419c359a0">
+          <value>
+            <State />
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State />
@@ -325,6 +377,8 @@
     <MESSAGE value="adjust the test as introducing global exception handler" />
     <MESSAGE value="gitignore" />
     <MESSAGE value="update service for exception handler" />
-    <option name="LAST_COMMIT_MESSAGE" value="update service for exception handler" />
+    <MESSAGE value="update controller for exception handler" />
+    <MESSAGE value="add test for customized system prompt" />
+    <option name="LAST_COMMIT_MESSAGE" value="add test for customized system prompt" />
   </component>
 </project>
