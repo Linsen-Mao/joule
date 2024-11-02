@@ -11,45 +11,51 @@ Joule is a digital assistant service that allows users to:
 
 ## Prerequisites
 
-- **Docker** installed on your system.
-- An **OpenAI API Key**. You can obtain one by signing up on the [OpenAI website](https://openai.com/).
+To run this application, make sure you have the following installed and configured on your system:
+
+- **Docker Desktop** with Docker and Docker Compose installed
+- **Kubernetes** enabled in Docker Desktop
+- An **OpenAI API Key**. Obtain one by signing up on the [OpenAI website](https://openai.com/).
 
 ## Setup Instructions
 
-### 1. Start the Database
+### 1. Deploy the Application
 
-Use the provided `compose.yaml` file to start the database using Docker Compose:
-
-```bash
-docker-compose -f compose.yaml up -d
-```
-
-### 2. Configure the Application
-
-Create an environment variable for your OpenAI API Key:
+Use the `deploy.sh` script to build, push, and deploy the application to Kubernetes. This script will handle all necessary steps, including starting the database and configuring the application on Kubernetes.
 
 ```bash
-export OPENAI_API_KEY=your-openai-api-key
+./deploy.sh
 ```
 
-Alternatively, you can add the API key directly in the application's `application.properties` file:
+### 2. Configure the OpenAI API Key in Kubernetes
 
-```properties
-openai.api.key=your-openai-api-key
+Open the `k8s/app-deployment.yaml` file and update the `OPENAI_API_KEY` environment variable with your actual OpenAI API key.
+
+```yaml
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://pgvector-service:5432/sap"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "admin"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "pd"
+            - name: SPRING_AI_VECTORSTORE_PGVECTOR_ACTIVATED
+              value: "true"
+            - name: SPRING_AI_OPENAI_CHAT_OPTIONS_MODEL
+              value: "gpt-4o"
+            - name: OPENAI_API_KEY
+              value: "your-openai-api-key"  # Replace this with your actual OpenAI API key
 ```
 
-If you want to use RAG (Retrieval-Augmented Generation), activate it by setting the attribute:
+If you want to use Retrieval-Augmented Generation (RAG), the `SPRING_AI_VECTORSTORE_PGVECTOR_ACTIVATED` variable should be set to `true`. **Note:** Please upload documents first if you choose to use RAG.
 
-```properties
-spring.ai.vectorstore.pgvector.activated=true
+### 3. Access the Application
+
+Once deployed, the service will start on **`http://localhost:8080`**. You can verify everything is running by checking the status of the Kubernetes resources:
+
+```bash
+kubectl get pods,deployments,services
 ```
-
-**Note: Please upload documents first if you choose to use RAG.**
-### 3. Build and Run the Application
-
-Once configured, build and run the application. The service will start on **`http://localhost:8080`**.
-
-**Note: You can run test first to make sure the configuration is correct**
 
 ---
 
