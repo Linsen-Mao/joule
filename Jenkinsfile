@@ -11,7 +11,10 @@ pipeline {
 
     stages {
         stage('Checkout') {
-            steps {
+                steps {
+                    script {
+                        sh 'rm -rf joule || true'
+                }
                 withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
                     sh 'git clone https://${GITHUB_TOKEN}@github.com/Linsen-Mao/joule.git'
                     sh 'cd joule'
