@@ -31,7 +31,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build(FULL_IMAGE, '--platform linux/amd64 .')
+                    sh "docker build -t ${FULL_IMAGE} --platform linux/amd64 ."
                 }
             }
         }
