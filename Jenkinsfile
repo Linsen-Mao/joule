@@ -13,7 +13,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
-                    sh 'git clone https://github.com/Linsen-Mao/joule'
+                    sh 'git clone https://${GITHUB_TOKEN}@github.com/Linsen-Mao/joule.git'
                     sh 'cd joule'
                 }
             }
