@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+        - name: app
+          image: linsenmao/joule:v1
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://pgvector-service:5432/sap"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "admin"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "pd"
+            - name: SPRING_AI_VECTORSTORE_PGVECTOR_ACTIVATED
+              value: "true"
+            - name: SPRING_AI_OPENAI_CHAT_OPTIONS_MODEL
+              value: "gpt-4o"
+            - name: OPENAI_API_KEY
+              value: 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
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-service
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: app
