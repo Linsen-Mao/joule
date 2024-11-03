@@ -33,8 +33,7 @@ spec:
                 secretKeyRef:
                   name: openai-secret
                   key: OPENAI_API_KEY
-#            - name: OPENAI_API_KEY
-#              value: ${your-openai-api-key}
+
 ---
 apiVersion: v1
 kind: Service
