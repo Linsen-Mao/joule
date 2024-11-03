@@ -50,21 +50,21 @@
              }
          }
 
-         stage('Deploy to Kubernetes') {
-             steps {
-                 script {
-                     withCredentials([file(credentialsId: KUBECONFIG_CREDENTIALS_ID, variable: 'KUBECONFIG'),
-                                      string(credentialsId: OPENAI_API_KEY_CREDENTIALS_ID, variable: 'API_KEY')]) {
-                         sh '''
-                         kubectl create secret generic openai-secret --from-literal=OPENAI_API_KEY=${API_KEY} --dry-run=client -o yaml | kubectl apply -f -
-                         kubectl set image deployment/app app=${FULL_IMAGE} --kubeconfig=$KUBECONFIG
-                         kubectl apply -f k8s/pgvector-deployment.yaml --kubeconfig=$KUBECONFIG
-                         kubectl apply -f k8s/app-deployment.yaml --kubeconfig=$KUBECONFIG
-                         '''
-                     }
-                 }
-             }
-         }
+        stage('Deploy to Kubernetes') {
+            steps {
+                script {
+                    withCredentials([file(credentialsId: KUBECONFIG_CREDENTIALS_ID, variable: 'KUBECONFIG'),
+                             string(credentialsId: OPENAI_API_KEY_CREDENTIALS_ID, variable: 'API_KEY')]) {
+                        sh '''
+                        kubectl create secret generic openai-secret --from-literal=OPENAI_API_KEY=${API_KEY} --dry-run=client -o yaml | kubectl apply -f -
+                        kubectl set image deployment/app app=${FULL_IMAGE} --kubeconfig=$KUBECONFIG
+                        kubectl apply -f k8s/pgvector-deployment.yaml --kubeconfig=$KUBECONFIG
+                        kubectl apply -f k8s/app-deployment.yaml --kubeconfig=$KUBECONFIG
+                        '''
+                    }
+                }
+            }
+        }
      }
 
      post {
