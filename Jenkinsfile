@@ -25,9 +25,7 @@ pipeline {
        stage('Build with Maven') {
             steps {
                 script {
-                    docker.image('maven:3.9.2-eclipse-temurin-21').inside {
                         sh 'mvn clean package'
-                    }
                 }
             }
         }
@@ -35,9 +33,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.image('docker:24.0.5').inside {
                         sh "docker build -t ${FULL_IMAGE} --platform linux/amd64 ."
-                    }
                 }
             }
         }
@@ -45,11 +41,9 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    docker.image('docker:24.0.5').inside {
                         withCredentials([usernamePassword(credentialsId: DOCKER_CREDENTIALS_ID, passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOCKER_USER')]) {
                             sh "echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin"
                             sh "docker push ${FULL_IMAGE}"
-                        }
                     }
                 }
             }
@@ -58,14 +52,12 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 script {
-                    docker.image('bitnami/kubectl').inside {
                         withCredentials([file(credentialsId: KUBECONFIG_CREDENTIALS_ID, variable: 'KUBECONFIG')]) {
                             sh '''
                             kubectl set image deployment/app app=${FULL_IMAGE} --kubeconfig=$KUBECONFIG
                             kubectl apply -f k8s/pgvector-deployment.yaml --kubeconfig=$KUBECONFIG
                             kubectl apply -f k8s/app-deployment.yaml --kubeconfig=$KUBECONFIG
                             '''
-                        }
                     }
                 }
             }
