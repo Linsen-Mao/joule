@@ -29,13 +29,6 @@ Run the following command to create the secret:
 kubectl create secret generic openai-secret --from-literal=OPENAI_API_KEY=<your-actual-openai-api-key>
 ```
 
-If you want to use Retrieval-Augmented Generation (RAG), the `SPRING_AI_VECTORSTORE_PGVECTOR_ACTIVATED` variable should be set to `true`.
-**Note:** Please upload documents first if you choose to use RAG.
-
-```bash
-kubectl set env deployment/app SPRING_AI_VECTORSTORE_PGVECTOR_ACTIVATED=true
-```
-
 ### 2. Deploy the Application
 
 Use the `deploy.sh` script to build, push, and deploy the application to Kubernetes. This script will handle all necessary steps, including starting the database and configuring the application on Kubernetes.
@@ -43,6 +36,14 @@ Use the `deploy.sh` script to build, push, and deploy the application to Kuberne
 ```bash
 ./deploy.sh
 ```
+
+If you want to use Retrieval-Augmented Generation (RAG), the `SPRING_AI_VECTORSTORE_PGVECTOR_ACTIVATED` variable should be set to `true`.
+**Note:** Please upload documents first if you choose to use RAG.
+
+```bash
+kubectl set env deployment/app SPRING_AI_VECTORSTORE_PGVECTOR_ACTIVATED=true
+```
+
 
 ### 3. Access the Application
 
