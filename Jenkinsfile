@@ -11,9 +11,9 @@ pipeline {
 
     stages {
         stage('Checkout') {
-                steps {
-                    script {
-                        sh 'rm -rf joule || true'
+            steps {
+                script {
+                    sh 'rm -rf joule || true'
                 }
                 withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
                     sh 'git clone https://${GITHUB_TOKEN}@github.com/Linsen-Mao/joule.git'
@@ -23,12 +23,18 @@ pipeline {
         }
 
         stage('Build with Maven') {
+            agent {
+                docker { image 'maven:3.9.2-eclipse-temurin-21' }
+            }
             steps {
                 sh 'mvn clean package'
             }
         }
 
         stage('Build Docker Image') {
+            agent {
+                docker { image 'docker:24.0.5' }
+            }
             steps {
                 script {
                     sh "docker build -t ${FULL_IMAGE} --platform linux/amd64 ."
@@ -37,6 +43,9 @@ pipeline {
         }
 
         stage('Push Docker Image') {
+            agent {
+                docker { image 'docker:24.0.5' }
+            }
             steps {
                 withCredentials([usernamePassword(credentialsId: DOCKER_CREDENTIALS_ID, passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOCKER_USER')]) {
                     sh "echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin"
