@@ -25,7 +25,7 @@ spec:
             - name: SPRING_DATASOURCE_PASSWORD
               value: "pd"
             - name: SPRING_AI_VECTORSTORE_PGVECTOR_ACTIVATED
-              value: "true"
+              value: "false"
             - name: SPRING_AI_OPENAI_CHAT_OPTIONS_MODEL
               value: "gpt-4o"
             - name: SPRING_AI_OPENAI_API_KEY
@@ -33,8 +33,6 @@ spec:
                 secretKeyRef:
                   name: openai-secret
                   key: OPENAI_API_KEY
-#            - name: SPRING_AI_OPENAI_API_KEY
-#              value: your-openai-api-key
 
 ---
 apiVersion: v1

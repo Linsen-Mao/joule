@@ -19,35 +19,30 @@ To run this application, make sure you have the following installed and configur
 
 ## Setup Instructions
 
-### 1. Deploy the Application
+### 1. Configure the OpenAI API Key in Kubernetes
+
+To secure your OpenAI API key, you should store it as a Kubernetes secret and reference it in the deployment file.
+
+Run the following command to create the secret:
+
+```bash
+kubectl create secret generic openai-secret --from-literal=OPENAI_API_KEY=<your-actual-openai-api-key>
+```
+
+If you want to use Retrieval-Augmented Generation (RAG), the `SPRING_AI_VECTORSTORE_PGVECTOR_ACTIVATED` variable should be set to `true`.
+**Note:** Please upload documents first if you choose to use RAG.
+
+```bash
+kubectl set env deployment/app SPRING_AI_VECTORSTORE_PGVECTOR_ACTIVATED=true
+```
+
+### 2. Deploy the Application
 
 Use the `deploy.sh` script to build, push, and deploy the application to Kubernetes. This script will handle all necessary steps, including starting the database and configuring the application on Kubernetes.
 
 ```bash
 ./deploy.sh
 ```
-
-### 2. Configure the OpenAI API Key in Kubernetes
-
-Open the `k8s/app-deployment.yaml` file and update the `OPENAI_API_KEY` environment variable with your actual OpenAI API key.
-
-```yaml
-          env:
-            - name: SPRING_DATASOURCE_URL
-              value: "jdbc:postgresql://pgvector-service:5432/sap"
-            - name: SPRING_DATASOURCE_USERNAME
-              value: "admin"
-            - name: SPRING_DATASOURCE_PASSWORD
-              value: "pd"
-            - name: SPRING_AI_VECTORSTORE_PGVECTOR_ACTIVATED
-              value: "true"
-            - name: SPRING_AI_OPENAI_CHAT_OPTIONS_MODEL
-              value: "gpt-4o"
-            - name: OPENAI_API_KEY
-              value: "your-openai-api-key"  # Replace this with your actual OpenAI API key
-```
-
-If you want to use Retrieval-Augmented Generation (RAG), the `SPRING_AI_VECTORSTORE_PGVECTOR_ACTIVATED` variable should be set to `true`. **Note:** Please upload documents first if you choose to use RAG.
 
 ### 3. Access the Application
 
@@ -56,8 +51,6 @@ Once deployed, the service will start on **`http://localhost:8080`**. You can ve
 ```bash
 kubectl get pods,deployments,services
 ```
-
----
 
 ## API Usage
 
@@ -114,7 +107,30 @@ You can interact with the service using HTTP requests via tools like **Postman**
       }
       ```
 
-### 3. Ask a Question to the Assistant
+### 3. Upload a PDF Document for Assistant Processing
+
+- **Endpoint:** `POST /api/v1/assistant/{name}/upload`
+- **Description:** Uploads a PDF document for a specific assistant. The document will be processed asynchronously using an event-driven approach.
+- **Path Parameter:**
+
+    - `name` (string): The name of the assistant.
+
+- **Form Data Parameter:**
+
+    - `file` (MultipartFile): The PDF file to be uploaded.
+
+- **Response:**
+
+    - **Success:**
+
+      ```json
+      {
+        "status": "success",
+        "message": "PDF upload event published for assistant: Joule"
+      }
+      ```
+
+### 4. Ask a Question to the Assistant
 
 - **Endpoint:** `POST /api/v1/assistant/{name}/answer`
 - **Description:** Sends a question to the specified assistant and retrieves an answer.
@@ -147,28 +163,5 @@ You can interact with the service using HTTP requests via tools like **Postman**
       {
         "status": "error",
         "message": "No answer found for the given question"
-      }
-      ```
-
-### 4. Upload a PDF Document for Assistant Processing
-
-- **Endpoint:** `POST /api/v1/assistant/{name}/upload`
-- **Description:** Uploads a PDF document for a specific assistant. The document will be processed asynchronously using an event-driven approach.
-- **Path Parameter:**
-
-    - `name` (string): The name of the assistant.
-
-- **Form Data Parameter:**
-
-    - `file` (MultipartFile): The PDF file to be uploaded.
-
-- **Response:**
-
-    - **Success:**
-
-      ```json
-      {
-        "status": "success",
-        "message": "PDF upload event published for assistant: Joule"
       }
       ```
