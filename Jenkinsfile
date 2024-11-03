@@ -63,6 +63,14 @@ pipeline {
                 }
             }
         }
+
+        stage('Debug Environment Variables') {
+            steps {
+                script {
+                    echo "API_KEY from Jenkins: ${API_KEY}"
+                }
+            }
+        }
     }
 
     post {
