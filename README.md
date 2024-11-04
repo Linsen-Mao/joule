@@ -13,7 +13,7 @@ Joule is a digital assistant service that allows users to:
 
 To run this application, make sure you have the following installed and configured on your system:
 
-- **Docker Desktop** with Docker and Docker Compose installed
+- **Docker Desktop**
 - **Kubernetes** enabled in Docker Desktop
 - An **OpenAI API Key**. Obtain one by signing up on the [OpenAI website](https://openai.com/).
 
